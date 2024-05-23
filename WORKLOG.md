@@ -1,10 +1,10 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Polina Kozyarchuk
 
-### date x
+### 5/22/2024
 
-info
+wrote coordinates clas
 
 ### date y
 
