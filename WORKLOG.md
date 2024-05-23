@@ -4,18 +4,18 @@
 
 ### 5/22/2024
 
-wrote coordinates clas
+wrote coordinates class
 
 ### date y
 
 info
 
 
-## GROUP MEMBER 2
+## Zaynab Anwar
 
-### date x
+### 5/22/2024
 
-info
+started on displaying the map in processing
 
 ### date y
 
