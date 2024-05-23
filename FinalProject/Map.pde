@@ -16,6 +16,10 @@ public class Map{
      background(99, 82, 48); 
      fill(163, 123, 47); 
      noStroke(); 
-     rect(0, height - (height/10), width, (height/10)); 
+     int ycor = height - (height/10);
+     rect(0, ycor, width, (height/10)); 
+     
+     fill(122, 206, 255); 
+     rect((width/20), ycor, (width/10), (height/20)); 
    }
 }
