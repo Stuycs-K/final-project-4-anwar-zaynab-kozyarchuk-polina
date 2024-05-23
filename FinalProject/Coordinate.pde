@@ -29,6 +29,7 @@ class Coordinate{
   }
   
   void set(int x, int y){
-    
+    setX(x);
+    setY(y);
   }
 }
