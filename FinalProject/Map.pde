@@ -13,8 +13,9 @@ public class Map{
    }
    
    public void setupMap(){
-     background(0); 
-     fill(102, 66, 0); 
-     rect(0, height - 50, width, 50); 
+     background(99, 82, 48); 
+     fill(163, 123, 47); 
+     noStroke(); 
+     rect(0, height - (height/10), width, (height/10)); 
    }
 }
