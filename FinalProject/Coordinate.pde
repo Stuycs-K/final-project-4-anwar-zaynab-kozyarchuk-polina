@@ -32,4 +32,12 @@ class Coordinate{
     setX(x);
     setY(y);
   }
+  
+  int getX(){
+    return xcor; 
+  }
+  
+  int getY(){
+    return ycor; 
+  }
 }
