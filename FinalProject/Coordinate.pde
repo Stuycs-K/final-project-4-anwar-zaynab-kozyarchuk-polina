@@ -21,7 +21,7 @@ class Coordinate{
   }
   
   void setY(int y){
-    if (y >= 0 && x <= height){
+    if (y >= 0 && y <= height){
       ycor = y;
     } else {
       throw new IndexOutOfBoundsException(y + " is out of bound (0, " + height + ")");
