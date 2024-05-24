@@ -6,8 +6,8 @@ class Character{
   int h;
   int w;
   
-  Character(int x, int y, String str){
-    //top left coordinate
+  Character(String str, int x, int y){
+    //bottom right coordinate
     position = new PVector(x,y,0);
     velocity = new PVector(0,0,0);
     acceleration = new PVector(0,0,0);
@@ -39,10 +39,6 @@ class Character{
     return get((int) position.x + w, (int)position.y + h);
   }
   
-  boolean reachedGoal(){
-    return false;
-  }
-  
   void display(){
     color c;
     if (isFire()){
@@ -52,5 +48,13 @@ class Character{
     }
     fill(c);
     rect(position.x, position.y, w, h);
+  }
+  
+  void move(){
+    if (acceleration.mag() < 5){
+      acceleration.add(1, 0); 
+      velocity.add(acceleration); 
+      position.add(velocity); 
+    }
   }
 }

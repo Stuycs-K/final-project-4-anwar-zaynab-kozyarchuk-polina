@@ -1,5 +1,6 @@
 import java.util.*;
 import java.lang.IndexOutOfBoundsException;
+boolean right;
 
 void setup(){
   size(400, 400); 
@@ -7,6 +8,13 @@ void setup(){
   m.setupMap(); 
 }
 
+void keyPressed(){
+  right = true;
+}
+
+void keyReleased(){
+  right = false; 
+}
 void draw(){
   
 }
