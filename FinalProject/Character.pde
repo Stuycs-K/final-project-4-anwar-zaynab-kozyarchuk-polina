@@ -6,7 +6,7 @@ class Character{
   int h;
   int w;
   
-  Character(String str, int x, int y){
+  Character(int x, int y, String str){
     //bottom right coordinate
     position = new PVector(x,y,0);
     velocity = new PVector(0,0,0);
@@ -37,6 +37,10 @@ class Character{
   //using the rightmost edge of the character
   color belowPixel(){
     return get((int) position.x + w, (int)position.y + h);
+  }
+  
+  boolean reachedGoal(){
+    return false;
   }
   
   void display(){
