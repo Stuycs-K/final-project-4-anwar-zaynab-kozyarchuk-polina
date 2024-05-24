@@ -36,10 +36,44 @@ class Character{
   
   //using the rightmost edge of the character
   color belowPixel(){
-    return get((int) position.x + w, (int)position.y + h);
+    PVector bottomRight = bottomRight();
+    return get((int) bottomRight.x + w, (int)bottomRight.y + h);
+  }
+  
+  PVector topLeft(){
+    return position;
+  }
+  
+  PVector topRight(){
+    return new PVector(position.x+w, position.y,0);
+  }
+  
+  PVector bottomLeft(){
+    return new PVector(position.x, position.y+h, 0);
+  }
+  
+  PVector bottomRight(){
+    return new PVector(position.x+w, position.y+h,0);
   }
   
   boolean reachedGoal(){
+    if (isFire()){
+      return inProximity(FIREDOOR,2);
+    }
+    else {
+      return inProximity(WATERDOOR, 2);
+    }
+  }
+  
+  boolean inProximity(color col, int range){
+    PImage square = get((int)position.x-range, (int)position.y-range, w+(2*range), h+(2*range));
+    for (int r = 0; r < square.width; r++){
+      for (int c = 0; c < square.height; c++){
+        if (square.get(r,c) == col){
+          return true;
+        }
+      }
+    }
     return false;
   }
   
