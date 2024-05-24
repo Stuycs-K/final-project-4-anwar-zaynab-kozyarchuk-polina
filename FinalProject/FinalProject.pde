@@ -6,3 +6,7 @@ void setup(){
   Map m = new Map(); 
   m.setupMap(); 
 }
+
+void draw(){
+  
+}

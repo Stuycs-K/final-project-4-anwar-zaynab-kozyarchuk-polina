@@ -3,15 +3,15 @@ public class Map{
   Character watergirl; 
   
  //ArrayList<Door> doors; 
- ArrayList<Block> blocks; 
+ ArrayList<Obstacle> blocks; 
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    
    public Map(){
      //fireboy = new Character(); 
      //watergirl = new Character(); 
-     blocks = new ArrayList<Block>(); 
-     blocks.add(new Block("goo", width/10, height - height/10)); 
+     blocks = new ArrayList<Obstacle>(); 
+     blocks.add(new Obstacle("goo", width/10, height - height/10)); 
    }
    
    public void setupMap(){

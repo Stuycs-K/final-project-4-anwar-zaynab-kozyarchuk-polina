@@ -1,11 +1,11 @@
-public class Block{
+public class Obstacle{
   Coordinate location; 
   String type; 
   int w; 
   int h; 
   color c; 
   
-  public Block(String type, int x, int y){
+  public Obstacle(String type, int x, int y){
     this.type = type;
     location = new Coordinate(x, y);
     w = width/10; 
