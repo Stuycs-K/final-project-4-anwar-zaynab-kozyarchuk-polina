@@ -20,6 +20,9 @@ public class Map{
      rect(0, ycor, width, (height/10)); 
      
      fill(122, 206, 255); 
-     rect((width/20), ycor, (width/10), (height/20)); 
+     rect((width/20), ycor, (width/10), (height/20));
+
+     fireboy = new Character("f",0,0);
+     f
    }
 }
