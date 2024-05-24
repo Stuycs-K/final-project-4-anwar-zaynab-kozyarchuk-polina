@@ -7,7 +7,7 @@ class Character{
   int w;
   
   Character(int x, int y, String str){
-    //bottom right coordinate
+    //top left coordinate
     position = new PVector(x,y,0);
     velocity = new PVector(0,0,0);
     acceleration = new PVector(0,0,0);
