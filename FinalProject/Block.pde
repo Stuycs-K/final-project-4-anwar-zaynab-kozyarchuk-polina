@@ -8,9 +8,9 @@ public class Block{
   public Block(String type, int x, int y){
     this.type = type;
     location = new Coordinate(x, y);
-    w = width/20; 
-    h = height/50;
-    c = color(110, 83, 11); 
+    w = width/10; 
+    h = height/20;
+    c = color(4, 120, 41); 
   }
 
   public boolean isLava(){
