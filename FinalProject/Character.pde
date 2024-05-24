@@ -13,10 +13,12 @@ class Character{
     acceleration = new PVector(0,0,0);
     if (str.equals("f") || str.equals("fire") || str.equals("fireboy")){
       type = "f";
-    } else {
+    } else if (str.equals("w") || str.equals("water") || str.equals("watergirl")){
       type = "w";
+    } else {
+      throw new IllegalArgumentException("illegal argument");
     }
-    h = height/30;
+    h = height/20;
     w = h / 2;
   }
   

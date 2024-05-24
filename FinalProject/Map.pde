@@ -21,8 +21,13 @@ public class Map{
      
      fill(122, 206, 255); 
      rect((width/20), ycor, (width/10), (height/20));
-
-     fireboy = new Character("f",0,0);
-     f
+     
+     fireboy = new Character("f", 0,0);
+     fireboy.setPosition(0, ycor-fireboy.h);
+     fireboy.display();
+     watergirl = new Character("w", 0,0);
+     watergirl.setPosition(fireboy.w + 2, ycor-watergirl.h);
+     watergirl.display();
+     System.out.println("fireboy.position: " + fireboy.position + "\nwatergirl.position: " + watergirl.position);
    }
 }
