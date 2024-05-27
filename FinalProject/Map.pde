@@ -1,52 +1,36 @@
 public class Map{
-  Character fireboy;
+  public Character fireboy;
   Character watergirl; 
   
 
   ArrayList<Door> doors; 
- ArrayList<Block> blocks; 
+ ArrayList<Obstacle> blocks; 
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    
    public Map(){
      //fireboy = new Character(); 
      //watergirl = new Character(); 
-     blocks = new ArrayList<Block>(); 
-     blocks.add(new Block("goo", width/10, height - height/10)); 
+     blocks = new ArrayList<Obstacle>(); 
+     blocks.add(new Obstacle("goo", width/10, height - height/10)); 
    }
    
-   public void setupMap(){
-
-     //background(71, 35, 0); 
-     //fill(163, 117, 0); 
-     //rect(0, height - height/10, width, height/10); 
-     //for (int i = 0; i < blocks.size(); i++){
-     //  blocks.get(i).display(); 
-     //}
-     
-
-     //fill(122, 206, 255); 
-     //rect((width/20), ycor, (width/10), (height/20));
-     
-     /* code to display characters */
-     //fireboy = new Character("f", 0,0);
-     //fireboy.setPosition(0, ycor-fireboy.h);
-     //fireboy.display();
-     //watergirl = new Character("w", 0,0);
-     //watergirl.setPosition(fireboy.w + 2, ycor-watergirl.h);
-     //watergirl.display();     
-
-
+   public void showBackground(){
      background(99, 82, 48); 
      fill(163, 123, 47); 
      noStroke(); 
      int ycor = height - (height/10);
      rect(0, ycor, width, (height/10)); 
      
-     fill(122, 206, 255); 
-     rect((width/20), ycor, (width/10), (height/20));
+     for (Obstacle o: blocks){
+       o.display(); 
+     }
+   }
+   public void setupMap(){
+     showBackground(); 
      
      /* code to display characters */
+     int ycor = height - (height/10);
      fireboy = new Character(0,0, "f");
      fireboy.setPosition(0, ycor-fireboy.h);
      watergirl = new Character(0,0, "w");
@@ -69,4 +53,12 @@ public class Map{
      fireboy.display();
      watergirl.display();
    }
+   
+   void display(){
+     showBackground(); 
+     displayChars(); 
+     displayDoors(); 
+   }
+   
+
 }

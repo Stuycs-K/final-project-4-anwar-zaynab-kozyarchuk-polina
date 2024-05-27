@@ -53,4 +53,23 @@ class Character{
     fill(c);
     rect(position.x, position.y, w, h);
   }
+  
+  void move(){
+    velocity.add(acceleration); 
+    position.add(velocity); 
+  }
+  
+  void slowDown(){
+    acceleration.setMag(0);
+    velocity.setMag(0); 
+  }
+  
+  void speedUp(){
+    if (velocity.mag() < 1){
+      acceleration.add(0.1, 0); 
+    }else{
+      acceleration.setMag(0); 
+    }
+  }
+    
 }
