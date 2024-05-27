@@ -1,6 +1,7 @@
 import java.util.*;
 import java.lang.IndexOutOfBoundsException;
-boolean right;
+boolean rightF;
+boolean rightW; 
 Map m;
 void setup(){
   size(400, 400); 
@@ -9,19 +10,30 @@ void setup(){
 }
 
 void keyPressed(){
-  right = true;
+  if (keyCode == RIGHT)
+    rightF = true;
+  if (key == 'd')
+    rightW = true; 
 }
 
 void keyReleased(){
-  right = false; 
+  if (keyCode == RIGHT)
+    rightF = false;
+  if (key == 'd')
+    rightW = false; 
 }
 void draw(){
-  println(right); 
-  if(right){
+  if(rightF){
     m.fireboy.speedUp(); 
   }else{
     m.fireboy.slowDown(); 
   }
-  m.fireboy.move(); 
+  
+  if(rightW){
+    m.watergirl.speedUp(); 
+  }else{
+    m.watergirl.slowDown(); 
+  }
+  m.moveChars(); 
   m.display(); 
 }

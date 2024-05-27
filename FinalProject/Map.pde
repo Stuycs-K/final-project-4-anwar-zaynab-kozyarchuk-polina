@@ -1,10 +1,10 @@
 public class Map{
   public Character fireboy;
-  Character watergirl; 
+  public Character watergirl; 
   
 
   ArrayList<Door> doors; 
- ArrayList<Obstacle> blocks; 
+  ArrayList<Obstacle> blocks; 
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    
@@ -58,6 +58,11 @@ public class Map{
      showBackground(); 
      displayChars(); 
      displayDoors(); 
+   }
+   
+   void moveChars(){
+     fireboy.move(); 
+     watergirl.move(); 
    }
    
 
