@@ -57,16 +57,21 @@ class Character{
   void move(){
     velocity.add(acceleration); 
     position.add(velocity); 
+    println(velocity); 
   }
   
-  void slowDown(){
-    acceleration.setMag(0);
-    velocity.setMag(0); 
+  void slowDown(){ 
+    if (velocity.x <= 0){
+      velocity.setMag(0); 
+      acceleration.setMag(0); 
+    }else{
+      acceleration.sub(0.05, 0);
+    }
   }
   
   void speedUp(){
     if (velocity.mag() < 1){
-      acceleration.add(0.1, 0); 
+      acceleration.add(0.05, 0); 
     }else{
       acceleration.setMag(0); 
     }
