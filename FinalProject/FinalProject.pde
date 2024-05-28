@@ -28,6 +28,7 @@ void keyReleased(){
 }
 void draw(){
 
+  
   if(rightF){
     m.fireboy.speedUp(); 
   }else{
@@ -39,6 +40,13 @@ void draw(){
   }else{
     m.watergirl.slowDown(); 
   }
+ 
   m.moveChars(); 
-  m.display(); 
+  m.display();
+  
+  if(m.wonGame()){
+     background(color(0,0,0));
+  }
+  
+ 
 }

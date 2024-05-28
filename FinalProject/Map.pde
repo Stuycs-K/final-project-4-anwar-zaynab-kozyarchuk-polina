@@ -65,5 +65,7 @@ public class Map{
      watergirl.move(); 
    }
    
-
+   boolean wonGame(){
+     return fireboy.reachedGoal() && watergirl.reachedGoal();
+   }
 }
