@@ -31,7 +31,7 @@ void keyReleased(){
 }
 void draw(){
 
-  if (!m.wonGame()){
+  if (!m.wonGame() && !m.lostGame()){
     if(rightF){
       m.fireboy.speedUp(); 
     }else{
@@ -47,11 +47,7 @@ void draw(){
     m.moveChars(); 
     m.display();
   }
-  else {
-     delay(500);
-     background(color(0,0,0));
-     text("YOU WON!!!", width- (width/2), height - (height/2));
-  }
+
   
  
 }

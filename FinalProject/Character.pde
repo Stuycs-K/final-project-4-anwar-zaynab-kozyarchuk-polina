@@ -5,7 +5,8 @@ class Character{
   String type;
   int h;
   int w;
-  boolean doesExist;
+  boolean atDoor;
+  boolean isDead;
   
   Character(int x, int y, String str){
     //top left coordinate
@@ -22,7 +23,8 @@ class Character{
     h = height/20;
     w = h / 2;
     
-    doesExist = true;
+    atDoor = false;
+    isDead = false;
   }
   
   boolean isFire(){
@@ -59,18 +61,17 @@ class Character{
     return new PVector(position.x+w, position.y+h,0);
   }
   
-  boolean reachedGoal(){
+  void reachGoal(){
     if (isFire()){
       if( inProximity(FIREDOOR,2)){
-        doesExist = false;
+        atDoor = true;
       }
     }
     else {
       if( inProximity(WATERDOOR, 2)){
-        doesExist = false;
+        atDoor = true;
       }      
     }
-    return !doesExist;
   }
   
   boolean inProximity(color col, int range){
@@ -86,22 +87,26 @@ class Character{
   }
   
   void die(){
+    if (inProximity(GOO,1)){
+      isDead = true;
+      setPosition(-10,-10);
+    }
     if (isFire()){
       if (inProximity(LAVA,1)){
-        doesExist = false;
+        isDead = true;
         setPosition(-10,-10);
       }
     }
     else {
       if (inProximity(WATER,1)){
-        doesExist = false;
+        isDead = true;
         setPosition(-10,-10);
       }
     }
   }
   
   void display(){
-    if (doesExist){
+    if ((!isDead) && (!atDoor)){
       color c;
       if (isFire()){
          c = color(204,81,83);
@@ -110,11 +115,13 @@ class Character{
       }
       fill(c);
       rect(position.x, position.y, w, h);
+    } else {
+      println(type + " doesn't exist!");
     }
   }
   
   void move(){
-    if (doesExist){
+    if ((!isDead) && (!atDoor)){
       velocity.add(acceleration); 
       position.add(velocity); 
       //println(velocity); 
@@ -122,7 +129,7 @@ class Character{
   }
   
   void slowDown(){ 
-    if (doesExist){
+    if ((!isDead) && (!atDoor)){
       if (velocity.x <= 0){
         velocity.setMag(0); 
         acceleration.setMag(0); 
@@ -133,7 +140,7 @@ class Character{
   }
   
   void speedUp(){
-    if (doesExist){
+    if ((!isDead) && (!atDoor)){
       if (velocity.mag() < 1){
         acceleration.add(0.05, 0); 
       }else{
