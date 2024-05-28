@@ -36,8 +36,8 @@ public class Obstacle{
   }
   
   public void display(){
-    int x = position.x(); 
-    int y = position.y(); 
+    float x =  position.x; 
+    float y =  position.y; 
     fill(c); 
     rect(x, y, w, h); 
   }
