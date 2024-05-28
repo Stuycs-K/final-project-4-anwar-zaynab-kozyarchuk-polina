@@ -10,7 +10,13 @@ public class Obstacle{
     location = new Coordinate(x, y);
     w = width/10; 
     h = height/20;
-    c = color(4, 120, 41); 
+    if (isLava()){
+      c = LAVA;
+    } else if (isGoo()){
+      c = GOO;
+    } else {
+      c = WATER;
+    }
   }
 
   public boolean isLava(){

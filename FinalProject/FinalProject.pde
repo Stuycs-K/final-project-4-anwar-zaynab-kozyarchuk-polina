@@ -3,6 +3,9 @@ import java.lang.IndexOutOfBoundsException;
 
 final color FIREDOOR = color(180,10,10);
 final color WATERDOOR = color(50, 200, 200);
+final color GOO = color(4, 120, 41);
+final color LAVA = color(237, 97, 21);
+final color WATER = color(173, 213, 247);
 boolean rightF;
 boolean rightW; 
 Map m;
