@@ -1,5 +1,5 @@
 public class Obstacle{
-  Coordinate location; 
+  PVector position; 
   String type; 
   int w; 
   int h; 
@@ -7,10 +7,16 @@ public class Obstacle{
   
   public Obstacle(String type, int x, int y){
     this.type = type;
-    location = new Coordinate(x, y);
+    position = new PVector(x, y,0);
     w = width/10; 
     h = height/20;
-    c = color(4, 120, 41); 
+    if (isLava()){
+      c = LAVA;
+    } else if (isGoo()){
+      c = GOO;
+    } else {
+      c = WATER;
+    }
   }
 
   public boolean isLava(){
@@ -25,13 +31,13 @@ public class Obstacle{
     return type.equals("water"); 
   }
   
-  public Coordinate getLocation(){
-    return location;   
+  public PVector getLocation(){
+    return position;   
   }
   
   public void display(){
-    int x = location.getX(); 
-    int y = location.getY(); 
+    float x =  position.x; 
+    float y =  position.y; 
     fill(c); 
     rect(x, y, w, h); 
   }

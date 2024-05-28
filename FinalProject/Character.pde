@@ -7,6 +7,8 @@ class Character{
   int w;
   float groundY;
   boolean jumping; 
+  boolean atDoor;
+  boolean isDead;
   
   Character(int x, int y, String str){
     //top left coordinate
@@ -22,7 +24,9 @@ class Character{
     }
     h = height/20;
     w = h / 2;
-    groundY = y;
+    groundY = y;    
+    atDoor = false;
+    isDead = false;
   }
   
   boolean isFire(){
@@ -40,22 +44,83 @@ class Character{
   
   //using the rightmost edge of the character
   color belowPixel(){
-    return get((int) position.x + w, (int)position.y + h);
+    PVector bottomRight = bottomRight();
+    return get((int) bottomRight.x + w, (int)bottomRight.y + h);
   }
   
-  boolean reachedGoal(){
+  PVector topLeft(){
+    return position;
+  }
+  
+  PVector topRight(){
+    return new PVector(position.x+w, position.y,0);
+  }
+  
+  PVector bottomLeft(){
+    return new PVector(position.x, position.y+h, 0);
+  }
+  
+  PVector bottomRight(){
+    return new PVector(position.x+w, position.y+h,0);
+  }
+  
+  void reachGoal(){
+    if (isFire()){
+      if( inProximity(FIREDOOR,2)){
+        atDoor = true;
+      }
+    }
+    else {
+      if( inProximity(WATERDOOR, 2)){
+        atDoor = true;
+      }      
+    }
+  }
+  
+  boolean inProximity(color col, int range){
+    PImage square = get((int)position.x-range, (int)position.y-range, w+(2*range), h+(2*range));
+    for (int r = 0; r < square.width; r++){
+      for (int c = 0; c < square.height; c++){
+        if (square.get(r,c) == col){
+          return true;
+        }
+      }
+    }
     return false;
   }
   
-  void display(){
-    color c;
-    if (isFire()){
-       c = color(204,81,83);
-    } else {
-       c = color(104, 226, 242);
+  void die(){
+    if (inProximity(GOO,1)){
+      isDead = true;
+      setPosition(-10,-10);
     }
-    fill(c);
-    rect(position.x, position.y, w, h);
+    if (isFire()){
+      if (inProximity(LAVA,1)){
+        isDead = true;
+        setPosition(-10,-10);
+      }
+    }
+    else {
+      if (inProximity(WATER,1)){
+        isDead = true;
+        setPosition(-10,-10);
+      }
+    }
+  }
+  
+  void display(){
+    if ((!isDead) && (!atDoor)){
+      color c;
+      if (isFire()){
+         c = color(204,81,83);
+      } else {
+         c = color(104, 226, 242);
+      }
+      fill(c);
+      rect(position.x, position.y, w, h);
+    } else {
+      println(type + " doesn't exist!");
+    }
   }
   
   void move(){

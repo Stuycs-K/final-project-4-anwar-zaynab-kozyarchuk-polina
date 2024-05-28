@@ -1,11 +1,17 @@
 import java.util.*;
 import java.lang.IndexOutOfBoundsException;
+
+final color FIREDOOR = color(180,10,10);
+final color WATERDOOR = color(50, 200, 200);
+final color GOO = color(4, 120, 41);
+final color LAVA = color(237, 97, 21);
+final color WATER = color(173, 213, 247);
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
 boolean leftW; 
 Map m;
- 
+
 
 void setup(){
   size(400, 400); 
@@ -46,31 +52,35 @@ void keyReleased(){
     leftW = false; 
 }
 void draw(){
-  if(rightF && !leftF){
-    m.fireboy.speedUp("right"); 
-  }else if (!rightF && !leftF){
-    m.fireboy.slowDown("right"); 
+  if (!m.wonGame() && !m.lostGame()){
+    if(rightF && !leftF){
+      m.fireboy.speedUp("right"); 
+    }else if (!rightF && !leftF){
+      m.fireboy.slowDown("right"); 
+    }
+    
+    if(rightW && !leftW){
+      m.watergirl.speedUp("right"); 
+    }else if (!rightW && !leftW){
+      m.watergirl.slowDown("right"); 
+  
+    }
+  
+    if(leftF && !rightF){
+      m.fireboy.speedUp("left"); 
+    }else if (!leftF && !rightF){
+      m.fireboy.slowDown("left"); 
+    }
+    
+    if(leftW && !rightW){
+      m.watergirl.speedUp("left"); 
+    }else if (!leftW && !rightW){
+      m.watergirl.slowDown("left"); 
+    }
+    
+    
+    m.moveChars(); 
+    m.display(); 
   }
-  
-  if(rightW && !leftW){
-    m.watergirl.speedUp("right"); 
-  }else if (!rightW && !leftW){
-    m.watergirl.slowDown("right"); 
-  }
-  
-  if(leftF && !rightF){
-    m.fireboy.speedUp("left"); 
-  }else if (!leftF && !rightF){
-    m.fireboy.slowDown("left"); 
-  }
-  
-  if(leftW && !rightW){
-    m.watergirl.speedUp("left"); 
-  }else if (!leftW && !rightW){
-    m.watergirl.slowDown("left"); 
-  }
-  
-  
-  m.moveChars(); 
-  m.display(); 
+
 }

@@ -39,7 +39,7 @@ public class Map{
      
      doors = new ArrayList<Door>();
      doors.add(new Door(width-10, ycor-fireboy.h, "f"));
-     doors.add(new Door(width-10-fireboy.w-2, ycor-fireboy.h, "w"));
+     doors.add(new Door(width-10-fireboy.w-8, ycor-fireboy.h, "w"));
      displayDoors();
    }
    
@@ -65,5 +65,29 @@ public class Map{
      watergirl.move(); 
    }
    
-
+   boolean lostGame(){
+     fireboy.die();
+     watergirl.die();
+     if (fireboy.isDead || watergirl.isDead){
+       background(color(0,0,0));
+       text("AHHAHAHHAHAH LOSER", width- (width/2), height - (height/2)); 
+       return true;
+     } else {
+       return false;
+     }
+   }
+   
+   boolean wonGame(){
+     fireboy.reachGoal();
+     watergirl.reachGoal();
+     if (fireboy.atDoor && watergirl.atDoor){
+       delay(500);
+       background(color(0,0,0));
+       text("YOU WON!!!", width- (width/2), height - (height/2));  
+       return true;
+     } else {
+       return false;
+     }
+   }
+   
 }
