@@ -12,6 +12,7 @@ boolean leftF;
 boolean leftW; 
 Map m;
 
+
 void setup(){
   size(400, 400); 
   m = new Map(); 
@@ -28,6 +29,15 @@ void keyPressed(){
     leftF = true;
   if (key == 'a')
     leftW = true; 
+    
+  if (keyCode == UP && !m.fireboy.isJumping()){
+    m.fireboy.setJumping(true); 
+    m.fireboy.jump(); 
+  }
+  if (key == 'w' && !m.watergirl.isJumping()){
+    m.watergirl.setJumping(true); 
+    m.watergirl.jump(); 
+  }
 }
 
 void keyReleased(){
@@ -43,11 +53,7 @@ void keyReleased(){
 }
 void draw(){
 
-<<<<<<< HEAD
-  if (!m.wonGame()){
- 
-    println("F: " + leftF); 
-    println("W: " + leftW); 
+  if (!m.wonGame() && !m.lostGame()){
     if(rightF && !leftF){
       m.fireboy.speedUp("right"); 
     }else if (!rightF && !leftF){
@@ -58,15 +64,9 @@ void draw(){
       m.watergirl.speedUp("right"); 
     }else if (!rightW && !leftW){
       m.watergirl.slowDown("right"); 
-=======
-  if (!m.wonGame() && !m.lostGame()){
-    if(rightF){
-      m.fireboy.speedUp(); 
-    }else{
-      m.fireboy.slowDown(); 
->>>>>>> aa8855800c701d6b0b48fd1ef1ad49809edcf1d1
+  
     }
-    
+  
     if(leftF && !rightF){
       m.fireboy.speedUp("left"); 
     }else if (!leftF && !rightF){
@@ -80,17 +80,12 @@ void draw(){
     }
     
     m.moveChars(); 
-    m.display();
+    m.display(); 
   }
-<<<<<<< HEAD
   else {
      delay(500);
      background(color(0,0,0));
      text("YOU WON!!!", width- (width/2), height - (height/2));
   }
-=======
 
-  
- 
->>>>>>> aa8855800c701d6b0b48fd1ef1ad49809edcf1d1
 }
