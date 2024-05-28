@@ -99,24 +99,53 @@ class Character{
   void move(){
     velocity.add(acceleration); 
     position.add(velocity); 
-    //println(velocity); 
+
   }
   
-  void slowDown(){ 
-    if (velocity.x <= 0){
-      velocity.setMag(0); 
-      acceleration.setMag(0); 
-    }else{
-      acceleration.sub(0.05, 0);
+  void slowDown(String direction){ 
+    if (direction.equals("right")){
+      if (velocity.x <= 0){
+        velocity.setMag(0); 
+        acceleration.setMag(0); 
+      }else{
+        acceleration.sub(0.05, 0);
+      }
+    }
+    else if (direction.equals("left")){
+      if (velocity.x >= 0){
+        velocity.setMag(0); 
+        acceleration.setMag(0); 
+      }else{
+        acceleration.add(0.05, 0); 
+      }
     }
   }
   
-  void speedUp(){
-    if (velocity.mag() < 1){
-      acceleration.add(0.05, 0); 
-    }else{
-      acceleration.setMag(0); 
+  void speedUp(String direction){
+    if (direction.equals("right")){
+      if (velocity.mag() < 1){
+        acceleration.add(0.05, 0); 
+      }else{
+        acceleration.setMag(0); 
+      }
     }
+    else if (direction.equals("left")){
+      if (velocity.mag() < 1){
+        acceleration.sub(0.05, 0); 
+      }else{
+        acceleration.setMag(0); 
+      }
+    }
+  }
+  
+  void jump(){
+    float groundY = position.y;
+    float maxY  = groundY + height/10; 
+    if (velocity.y() < 1){
+      acceleration.add(0, 0.05); 
+    }
+    else if (velocity.y > 1)
+    
   }
     
 }
