@@ -5,7 +5,7 @@ class Character{
   String type;
   int h;
   int w;
-  boolean atGoal;
+  boolean doesExist;
   
   Character(int x, int y, String str){
     //top left coordinate
@@ -22,7 +22,7 @@ class Character{
     h = height/20;
     w = h / 2;
     
-    atGoal = false;
+    doesExist = true;
   }
   
   boolean isFire(){
@@ -62,15 +62,15 @@ class Character{
   boolean reachedGoal(){
     if (isFire()){
       if( inProximity(FIREDOOR,2)){
-        atGoal = true;
+        doesExist = false;
       }
     }
     else {
       if( inProximity(WATERDOOR, 2)){
-        atGoal = true;
+        doesExist = false;
       }      
     }
-    return atGoal;
+    return !doesExist;
   }
   
   boolean inProximity(color col, int range){
@@ -85,37 +85,60 @@ class Character{
     return false;
   }
   
-  void display(){
-    color c;
+  void die(){
     if (isFire()){
-       c = color(204,81,83);
-    } else {
-       c = color(104, 226, 242);
+      if (inProximity(LAVA,1)){
+        doesExist = false;
+        setPosition(-10,-10);
+      }
     }
-    fill(c);
-    rect(position.x, position.y, w, h);
+    else {
+      if (inProximity(WATER,1)){
+        doesExist = false;
+        setPosition(-10,-10);
+      }
+    }
+  }
+  
+  void display(){
+    if (doesExist){
+      color c;
+      if (isFire()){
+         c = color(204,81,83);
+      } else {
+         c = color(104, 226, 242);
+      }
+      fill(c);
+      rect(position.x, position.y, w, h);
+    }
   }
   
   void move(){
-    velocity.add(acceleration); 
-    position.add(velocity); 
-    //println(velocity); 
+    if (doesExist){
+      velocity.add(acceleration); 
+      position.add(velocity); 
+      //println(velocity); 
+    }
   }
   
   void slowDown(){ 
-    if (velocity.x <= 0){
-      velocity.setMag(0); 
-      acceleration.setMag(0); 
-    }else{
-      acceleration.sub(0.05, 0);
+    if (doesExist){
+      if (velocity.x <= 0){
+        velocity.setMag(0); 
+        acceleration.setMag(0); 
+      }else{
+        acceleration.sub(0.05, 0);
+      }
     }
   }
   
   void speedUp(){
-    if (velocity.mag() < 1){
-      acceleration.add(0.05, 0); 
-    }else{
-      acceleration.setMag(0); 
+    if (doesExist){
+      if (velocity.mag() < 1){
+        acceleration.add(0.05, 0); 
+      }else{
+        acceleration.setMag(0); 
+      }
     }
   }
     
