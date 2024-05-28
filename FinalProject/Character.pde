@@ -62,16 +62,16 @@ class Character{
   void slowDown(String direction){ 
     if (direction.equals("right")){
       if (velocity.x <= 0){
-        velocity.setMag(0); 
-        acceleration.setMag(0); 
+        velocity.set(0, velocity.y); 
+        acceleration.set(0, acceleration.y); 
       }else{
         acceleration.sub(0.05, 0);
       }
     }
     else if (direction.equals("left")){
       if (velocity.x >= 0){
-        velocity.setMag(0); 
-        acceleration.setMag(0); 
+        velocity.set(0, velocity.y); 
+        acceleration.set(0, acceleration.y); 
       }else{
         acceleration.add(0.05, 0); 
       }
@@ -83,26 +83,34 @@ class Character{
       if (velocity.mag() < 1){
         acceleration.add(0.05, 0); 
       }else{
-        acceleration.setMag(0); 
+        acceleration.set(0, acceleration.y); 
       }
     }
     else if (direction.equals("left")){
       if (velocity.mag() < 1){
         acceleration.sub(0.05, 0); 
       }else{
-        acceleration.setMag(0); 
+        acceleration.set(0, acceleration.y); 
       }
     }
   }
   
   void jump(){
     float groundY = position.y;
-    float maxY  = groundY + height/10; 
-    if (velocity.y() < 1){
-      acceleration.add(0, 0.05); 
+    if (velocity.mag() < 3){
+      velocity.add(0, 0.1); 
     }
-    else if (velocity.y > 1)
+    if (position.y < groundY){
+      acceleration.set(acceleration.x, 0); 
+      velocity.set(velocity.x, 0); 
+      position.set(position.x, groundY); 
+    }
     
+    
+  }
+  
+  void accelerateUp(){
+    acceleration.add(0, -0.5); 
   }
     
 }

@@ -5,6 +5,9 @@ boolean rightW;
 boolean leftF; 
 boolean leftW; 
 Map m;
+int jumpCounter = 0;
+ 
+
 void setup(){
   size(400, 400); 
   m = new Map(); 
@@ -21,6 +24,11 @@ void keyPressed(){
     leftF = true;
   if (key == 'a')
     leftW = true; 
+    
+  if (keyCode == UP){
+    jumpCounter = 50; 
+    m.fireboy.accelerateUp(); 
+  }
 }
 
 void keyReleased(){
@@ -35,8 +43,6 @@ void keyReleased(){
     leftW = false; 
 }
 void draw(){
-  println("F: " + leftF); 
-  println("W: " + leftW); 
   if(rightF && !leftF){
     m.fireboy.speedUp("right"); 
   }else if (!rightF && !leftF){
@@ -59,6 +65,11 @@ void draw(){
     m.watergirl.speedUp("left"); 
   }else if (!leftW && !rightW){
     m.watergirl.slowDown("left"); 
+  }
+  
+  if (jumpCounter > 0){
+    jumpCounter--; 
+    m.fireboy.jump(); 
   }
   
   m.moveChars(); 
