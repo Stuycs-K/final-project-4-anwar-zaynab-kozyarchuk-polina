@@ -1,8 +1,9 @@
 import java.util.*;
 import java.lang.IndexOutOfBoundsException;
-boolean right;
 final color FIREDOOR = color(130,61,75);
 final color WATERDOOR = color(50, 200, 200);
+boolean rightF;
+boolean rightW; 
 Map m;
 
 void setup(){
@@ -12,13 +13,31 @@ void setup(){
 }
 
 void keyPressed(){
-  right = true;
+  if (keyCode == RIGHT)
+    rightF = true;
+  if (key == 'd')
+    rightW = true; 
 }
 
 void keyReleased(){
-  right = false; 
+  if (keyCode == RIGHT)
+    rightF = false;
+  if (key == 'd')
+    rightW = false; 
 }
 void draw(){
-  //TEMPORARY
 
+  if(rightF){
+    m.fireboy.speedUp(); 
+  }else{
+    m.fireboy.slowDown(); 
+  }
+  
+  if(rightW){
+    m.watergirl.speedUp(); 
+  }else{
+    m.watergirl.slowDown(); 
+  }
+  m.moveChars(); 
+  m.display(); 
 }
