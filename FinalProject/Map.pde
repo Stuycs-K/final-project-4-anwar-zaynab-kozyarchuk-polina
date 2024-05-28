@@ -65,7 +65,29 @@ public class Map{
      watergirl.move(); 
    }
    
-   boolean wonGame(){
-     return fireboy.reachedGoal() && watergirl.reachedGoal();
+   boolean lostGame(){
+     fireboy.die();
+     watergirl.die();
+     if (fireboy.isDead || watergirl.isDead){
+       background(color(0,0,0));
+       text("AHHAHAHHAHAH LOSER", width- (width/2), height - (height/2)); 
+       return true;
+     } else {
+       return false;
+     }
    }
+   
+   boolean wonGame(){
+     fireboy.reachGoal();
+     watergirl.reachGoal();
+     if (fireboy.atDoor && watergirl.atDoor){
+       delay(500);
+       background(color(0,0,0));
+       text("YOU WON!!!", width- (width/2), height - (height/2));  
+       return true;
+     } else {
+       return false;
+     }
+   }
+   
 }
