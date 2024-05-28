@@ -94,5 +94,15 @@ class Character{
       }
     }
   }
+  
+  void jump(){
+    float groundY = position.y;
+    float maxY  = groundY + height/10; 
+    if (velocity.y() < 1){
+      acceleration.add(0, 0.05); 
+    }
+    else if (velocity.y > 1)
+    
+  }
     
 }
