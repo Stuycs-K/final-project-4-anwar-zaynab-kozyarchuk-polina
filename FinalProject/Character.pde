@@ -6,6 +6,7 @@ class Character{
   int h;
   int w;
   float groundY;
+  boolean jumping; 
   
   Character(int x, int y, String str){
     //top left coordinate
@@ -110,6 +111,14 @@ class Character{
   void jump(){
     acceleration.add(0, 0.5); 
     velocity.add(0, -7); 
+  }
+  
+  boolean isJumping(){
+    return jumping; 
+  }
+  
+  void setJumping(boolean j){
+    jumping = j; 
   }
     
 }

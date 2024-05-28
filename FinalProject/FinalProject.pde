@@ -5,7 +5,6 @@ boolean rightW;
 boolean leftF; 
 boolean leftW; 
 Map m;
-boolean jumping;
  
 
 void setup(){
@@ -25,9 +24,13 @@ void keyPressed(){
   if (key == 'a')
     leftW = true; 
     
-  if (keyCode == UP && !jumping){
-    jumping = true; 
+  if (keyCode == UP && !m.fireboy.isJumping()){
+    m.fireboy.setJumping(true); 
     m.fireboy.jump(); 
+  }
+  if (key == 'w' && !m.watergirl.isJumping()){
+    m.watergirl.setJumping(true); 
+    m.watergirl.jump(); 
   }
 }
 
