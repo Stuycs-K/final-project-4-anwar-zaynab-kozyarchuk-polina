@@ -20,8 +20,5 @@ void keyReleased(){
 }
 void draw(){
   //TEMPORARY
-   delay(1000);
-   m.fireboy.setPosition(width-15, (int)fireboy.position.y);
-   m.watergirl.setPosition(width-20, (int)fireboy.position.y);
-     
+
 }
