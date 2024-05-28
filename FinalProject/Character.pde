@@ -5,6 +5,7 @@ class Character{
   String type;
   int h;
   int w;
+  float groundY;
   
   Character(int x, int y, String str){
     //top left coordinate
@@ -20,6 +21,7 @@ class Character{
     }
     h = height/20;
     w = h / 2;
+    groundY = y;
   }
   
   boolean isFire(){
@@ -32,6 +34,7 @@ class Character{
   
   void setPosition(int x, int y){
     position = new PVector(x,y,0);
+    groundY = position.y; 
   }
   
   //using the rightmost edge of the character
@@ -57,6 +60,14 @@ class Character{
   void move(){
     velocity.add(acceleration); 
     position.add(velocity); 
+    
+    if (position.y > groundY){
+      jumping = false; 
+      acceleration.set(acceleration.x, 0); 
+      velocity.set(velocity.x, 0); 
+      position.set(position.x, groundY); 
+    }
+    
   }
   
   void slowDown(String direction){ 
@@ -95,22 +106,10 @@ class Character{
     }
   }
   
-  void jump(){
-    float groundY = position.y;
-    if (velocity.mag() < 3){
-      velocity.add(0, 0.1); 
-    }
-    if (position.y < groundY){
-      acceleration.set(acceleration.x, 0); 
-      velocity.set(velocity.x, 0); 
-      position.set(position.x, groundY); 
-    }
-    
-    
-  }
   
-  void accelerateUp(){
-    acceleration.add(0, -0.5); 
+  void jump(){
+    acceleration.add(0, 0.5); 
+    velocity.add(0, -7); 
   }
     
 }
