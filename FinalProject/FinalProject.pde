@@ -3,6 +3,9 @@ import java.lang.IndexOutOfBoundsException;
 
 final color FIREDOOR = color(180,10,10);
 final color WATERDOOR = color(50, 200, 200);
+final color GOO = color(4, 120, 41);
+final color LAVA = color(237, 97, 21);
+final color WATER = color(173, 213, 247);
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
@@ -40,6 +43,7 @@ void keyReleased(){
 }
 void draw(){
 
+<<<<<<< HEAD
   if (!m.wonGame()){
  
     println("F: " + leftF); 
@@ -54,6 +58,13 @@ void draw(){
       m.watergirl.speedUp("right"); 
     }else if (!rightW && !leftW){
       m.watergirl.slowDown("right"); 
+=======
+  if (!m.wonGame() && !m.lostGame()){
+    if(rightF){
+      m.fireboy.speedUp(); 
+    }else{
+      m.fireboy.slowDown(); 
+>>>>>>> aa8855800c701d6b0b48fd1ef1ad49809edcf1d1
     }
     
     if(leftF && !rightF){
@@ -71,9 +82,15 @@ void draw(){
     m.moveChars(); 
     m.display();
   }
+<<<<<<< HEAD
   else {
      delay(500);
      background(color(0,0,0));
      text("YOU WON!!!", width- (width/2), height - (height/2));
   }
+=======
+
+  
+ 
+>>>>>>> aa8855800c701d6b0b48fd1ef1ad49809edcf1d1
 }

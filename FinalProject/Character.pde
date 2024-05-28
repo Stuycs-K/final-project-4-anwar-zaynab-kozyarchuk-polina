@@ -5,7 +5,8 @@ class Character{
   String type;
   int h;
   int w;
-  boolean atGoal;
+  boolean atDoor;
+  boolean isDead;
   
   Character(int x, int y, String str){
     //top left coordinate
@@ -22,7 +23,8 @@ class Character{
     h = height/20;
     w = h / 2;
     
-    atGoal = false;
+    atDoor = false;
+    isDead = false;
   }
   
   boolean isFire(){
@@ -59,18 +61,17 @@ class Character{
     return new PVector(position.x+w, position.y+h,0);
   }
   
-  boolean reachedGoal(){
+  void reachGoal(){
     if (isFire()){
       if( inProximity(FIREDOOR,2)){
-        atGoal = true;
+        atDoor = true;
       }
     }
     else {
       if( inProximity(WATERDOOR, 2)){
-        atGoal = true;
+        atDoor = true;
       }      
     }
-    return atGoal;
   }
   
   boolean inProximity(color col, int range){
@@ -85,18 +86,42 @@ class Character{
     return false;
   }
   
-  void display(){
-    color c;
-    if (isFire()){
-       c = color(204,81,83);
-    } else {
-       c = color(104, 226, 242);
+  void die(){
+    if (inProximity(GOO,1)){
+      isDead = true;
+      setPosition(-10,-10);
     }
-    fill(c);
-    rect(position.x, position.y, w, h);
+    if (isFire()){
+      if (inProximity(LAVA,1)){
+        isDead = true;
+        setPosition(-10,-10);
+      }
+    }
+    else {
+      if (inProximity(WATER,1)){
+        isDead = true;
+        setPosition(-10,-10);
+      }
+    }
+  }
+  
+  void display(){
+    if ((!isDead) && (!atDoor)){
+      color c;
+      if (isFire()){
+         c = color(204,81,83);
+      } else {
+         c = color(104, 226, 242);
+      }
+      fill(c);
+      rect(position.x, position.y, w, h);
+    } else {
+      println(type + " doesn't exist!");
+    }
   }
   
   void move(){
+<<<<<<< HEAD
     velocity.add(acceleration); 
     position.add(velocity); 
 
