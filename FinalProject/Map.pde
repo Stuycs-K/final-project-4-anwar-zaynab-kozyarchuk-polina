@@ -39,7 +39,7 @@ public class Map{
      
      doors = new ArrayList<Door>();
      doors.add(new Door(width-10, ycor-fireboy.h, "f"));
-     doors.add(new Door(width-10-fireboy.w-2, ycor-fireboy.h, "w"));
+     doors.add(new Door(width-10-fireboy.w-8, ycor-fireboy.h, "w"));
      displayDoors();
    }
    

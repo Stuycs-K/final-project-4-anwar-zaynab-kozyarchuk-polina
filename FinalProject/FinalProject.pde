@@ -1,6 +1,7 @@
 import java.util.*;
 import java.lang.IndexOutOfBoundsException;
-final color FIREDOOR = color(130,61,75);
+
+final color FIREDOOR = color(180,10,10);
 final color WATERDOOR = color(50, 200, 200);
 boolean rightF;
 boolean rightW; 

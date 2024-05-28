@@ -23,9 +23,9 @@ class Door{
   void display(){
     color c;
     if (isFire()){
-       c = color(130,61,75);
+       c = FIREDOOR;
     } else {
-       c = color(50, 200, 200);
+       c = WATERDOOR;
     }
     fill(c);
     rect(position.x, position.y, w, h);    

@@ -5,6 +5,7 @@ class Character{
   String type;
   int h;
   int w;
+  boolean atGoal;
   
   Character(int x, int y, String str){
     //top left coordinate
@@ -20,6 +21,8 @@ class Character{
     }
     h = height/20;
     w = h / 2;
+    
+    atGoal = false;
   }
   
   boolean isFire(){
@@ -58,11 +61,16 @@ class Character{
   
   boolean reachedGoal(){
     if (isFire()){
-      return inProximity(FIREDOOR,2);
+      if( inProximity(FIREDOOR,2)){
+        atGoal = true;
+      }
     }
     else {
-      return inProximity(WATERDOOR, 2);
+      if( inProximity(WATERDOOR, 2)){
+        atGoal = true;
+      }      
     }
+    return atGoal;
   }
   
   boolean inProximity(color col, int range){
@@ -91,7 +99,7 @@ class Character{
   void move(){
     velocity.add(acceleration); 
     position.add(velocity); 
-    println(velocity); 
+    //println(velocity); 
   }
   
   void slowDown(){ 
