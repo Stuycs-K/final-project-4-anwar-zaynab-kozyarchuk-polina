@@ -28,24 +28,26 @@ void keyReleased(){
 }
 void draw(){
 
-  
-  if(rightF){
-    m.fireboy.speedUp(); 
-  }else{
-    m.fireboy.slowDown(); 
+  if (!m.wonGame()){
+    if(rightF){
+      m.fireboy.speedUp(); 
+    }else{
+      m.fireboy.slowDown(); 
+    }
+    
+    if(rightW){
+      m.watergirl.speedUp(); 
+    }else{
+      m.watergirl.slowDown(); 
+    }
+   
+    m.moveChars(); 
+    m.display();
   }
-  
-  if(rightW){
-    m.watergirl.speedUp(); 
-  }else{
-    m.watergirl.slowDown(); 
-  }
- 
-  m.moveChars(); 
-  m.display();
-  
-  if(m.wonGame()){
+  else {
+     delay(500);
      background(color(0,0,0));
+     text("YOU WON!!!", width- (width/2), height - (height/2));
   }
   
  
