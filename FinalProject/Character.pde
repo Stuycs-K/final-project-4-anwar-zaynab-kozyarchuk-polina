@@ -157,14 +157,14 @@ class Character{
   
   void speedUp(String direction){
     if (direction.equals("right")){
-      if (velocity.mag() < 1){
+      if (velocity.mag() < 1.5){
         acceleration.add(0.05, 0); 
       }else{
         acceleration.set(0, acceleration.y); 
       }
     }
     else if (direction.equals("left")){
-      if (velocity.mag() < 1){
+      if (velocity.mag() < 1.5){
         acceleration.sub(0.05, 0); 
       }else{
         acceleration.set(0, acceleration.y); 

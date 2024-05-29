@@ -15,7 +15,7 @@ Map m;
 
 
 void setup(){
-  size(400, 400); 
+  size(800, 400); 
   m = new Map(); 
   m.setupMap(); 
 }
@@ -83,10 +83,6 @@ void draw(){
     m.moveChars(); 
     m.display(); 
   }
-  else {
-     delay(500);
-     background(color(0,0,0));
-     text("YOU WON!!!", width- (width/2), height - (height/2));
-  }
+
 
 }

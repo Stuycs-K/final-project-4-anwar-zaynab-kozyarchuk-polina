@@ -1,18 +1,24 @@
 public class Map{
   public Character fireboy;
   public Character watergirl; 
-  
-
   ArrayList<Door> doors; 
   ArrayList<Obstacle> blocks; 
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    
    public Map(){
-     //fireboy = new Character(); 
-     //watergirl = new Character(); 
-     blocks = new ArrayList<Obstacle>(); 
-     blocks.add(new Obstacle("goo", width/10, height - height/10)); 
+     this(1); 
+   }
+   
+   public Map(int level){
+      if (level == 1){
+       blocks = new ArrayList<Obstacle>(); 
+       for(int i = 0; i < 3; i++){
+         int xcor = (int)(Math.random()*(width - 40)) + 20;
+         Obstacle goo = new Obstacle("goo", xcor, height - height/10);
+         blocks.add(goo); 
+       }
+      }
    }
    
    public void showBackground(){
