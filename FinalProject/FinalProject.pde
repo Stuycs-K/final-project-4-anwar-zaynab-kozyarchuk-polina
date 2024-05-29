@@ -6,6 +6,7 @@ final color WATERDOOR = color(50, 200, 200);
 final color GOO = color(4, 120, 41);
 final color LAVA = color(237, 97, 21);
 final color WATER = color(173, 213, 247);
+final color LEVER = color(159, 172, 194);
 boolean rightF;
 boolean rightW; 
 Map m;
