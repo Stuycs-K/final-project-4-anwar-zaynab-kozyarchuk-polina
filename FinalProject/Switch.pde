@@ -1,5 +1,5 @@
 abstract class Switch{
-  color x;
+  color c;
   boolean toggled;
   
   Switch(){

@@ -6,7 +6,8 @@ final color WATERDOOR = color(50, 200, 200);
 final color GOO = color(4, 120, 41);
 final color LAVA = color(237, 97, 21);
 final color WATER = color(173, 213, 247);
-final color LEVER = color(159, 172, 194);
+final color uLEVER = color(159, 172, 194);
+final color tLEVER = color(247, 194, 17);
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
@@ -82,11 +83,6 @@ void draw(){
     
     m.moveChars(); 
     m.display(); 
-  }
-  else {
-     delay(500);
-     background(color(0,0,0));
-     text("YOU WON!!!", width- (width/2), height - (height/2));
   }
 
 }
