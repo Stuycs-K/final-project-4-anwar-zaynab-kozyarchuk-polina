@@ -1,26 +1,26 @@
 class Lever extends Switch{
-  Lever(){
-    super();
+  Lever(Platform plat){
+    super(plat);
     c = uLEVER;
     h = height/30;
     w = h / 2;    
   }
-  Lever(boolean isToggled){
-    super(isToggled);
+  Lever(boolean isToggled, Platform plat){
+    super(isToggled,plat);
     if (isToggled){
       c = tLEVER;
     } else { c = uLEVER; }
     h = height/30;
     w = h / 2;    
   }
-  Lever(float x, float y){
-    super(x,y);
+  Lever(float x, float y, Platform plat){
+    super(x,y,plat);
     c = uLEVER;
     h = height/30;
     w = h / 2;    
   }
-  Lever(float x, float y, boolean isToggled){
-    super(x,y,isToggled);
+  Lever(float x, float y, boolean isToggled, Platform plat){
+    super(x,y,isToggled,plat);
     if (isToggled){
       c = tLEVER;
     } else { c = uLEVER; }

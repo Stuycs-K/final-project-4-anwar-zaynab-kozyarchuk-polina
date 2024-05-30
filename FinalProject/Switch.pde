@@ -6,19 +6,19 @@ abstract class Switch{
   int w;
   Platform platform;
   
-  Switch(){
-    this(0,0,false);
+  Switch(Platform plat){
+    this(0,0,false,plat);
   }
-  Switch(float x, float y){
-    this(x,y,false);
+  Switch(float x, float y, Platform plat){
+    this(x,y,false, plat);
   }
-  Switch(boolean isToggled){
-    this(0,0,isToggled);
+  Switch(boolean isToggled, Platform plat){
+    this(0,0,isToggled,plat);
   }
-  Switch(float x, float y, boolean isToggled){
+  Switch(float x, float y, boolean isToggled, Platform plat){
     position = new PVector(x,y,0);
     toggled = isToggled;
-    platform = new Platform();
+    platform = plat;
   }
   
   void display(){

@@ -9,16 +9,16 @@ class Platform{
   Platform(){
     this(0,0);
   }
-  Platform(int x, int y){
+  Platform(float x, float y){
     this(x,y,1);
   }
-  Platform(int x, int y, int _stateMax){
+  Platform(float x, float y, int _stateMax){
     this(x,y,20,10, _stateMax);
   }
-  Platform(int x, int y, int _w, int _h, int _stateMax){
+  Platform(float x, float y, int _w, int _h, int _stateMax){
     this(x,y,_w,_h,0, _stateMax);
   }  
-  Platform(int x, int y, int _w, int _h, int _state, int _stateMax){
+  Platform(float x, float y, int _w, int _h, int _state, int _stateMax){
     position = new PVector(x,y,0);
     state = _state;
     stateMax = _stateMax;
