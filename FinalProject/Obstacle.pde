@@ -8,7 +8,7 @@ public class Obstacle{
   public Obstacle(String type, int x, int y){
     this.type = type;
     position = new PVector(x, y,0);
-    w = 40;; 
+    w = 35;
     h = 20;
     if (isLava()){
       c = LAVA;

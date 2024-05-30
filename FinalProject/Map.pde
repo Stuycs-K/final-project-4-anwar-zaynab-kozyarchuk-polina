@@ -3,6 +3,7 @@ public class Map{
   public Character watergirl; 
   ArrayList<Door> doors; 
   ArrayList<Obstacle> blocks; 
+  int ycor = height - (height/10);
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    
@@ -13,19 +14,26 @@ public class Map{
    public Map(int level){
       if (level == 1){
        blocks = new ArrayList<Obstacle>(); 
-       for(int i = 0; i < 3; i++){
-         int xcor = (int)(Math.random()*(width - 40)) + 20;
-         Obstacle goo = new Obstacle("goo", xcor, height - height/10);
-         blocks.add(goo); 
-       }
+       blocks.add(new Obstacle("goo", width/4, ycor));
+       blocks.add(new Obstacle("water", width/2, ycor)); 
+       blocks.add(new Obstacle("lava", width*3/4, ycor)); 
+       printTutorial(); 
       }
+   }
+   
+   public void printTutorial(){
+     PFont font; 
+     font = loadFont("DejaVuSerif-48.vlw"); 
+     textFont(font); 
+     fill(0); 
+     text("use AWD to control fireboy", width/20, height/20); 
+     println("called"); 
    }
    
    public void showBackground(){
      background(99, 82, 48); 
      fill(163, 123, 47); 
      noStroke(); 
-     int ycor = height - (height/10);
      rect(0, ycor, width, (height/10)); 
      
      for (Obstacle o: blocks){

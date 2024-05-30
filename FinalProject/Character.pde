@@ -93,15 +93,16 @@ class Character{
     if (inProximity(GOO,1)){
       isDead = true;
       setPosition(-10,-10);
+      println("goo"); 
     }
     if (isFire()){
-      if (inProximity(LAVA,1)){
+      if (inProximity(WATER,1)){
         isDead = true;
         setPosition(-10,-10);
       }
     }
     else {
-      if (inProximity(WATER,1)){
+      if (inProximity(LAVA,1)){
         isDead = true;
         setPosition(-10,-10);
       }
@@ -175,7 +176,7 @@ class Character{
   
   void jump(){
     acceleration.add(0, 0.5); 
-    velocity.add(0, -7); 
+    velocity.add(0, -8); 
   }
   
   boolean isJumping(){
