@@ -63,8 +63,8 @@ void keyReleased(){
   if (key == 'a')
     leftW = false; 
 }
-void draw(){
 
+void draw(){
   if (!m.wonGame() && !m.lostGame()){
     if(rightF && !leftF){
       m.fireboy.speedUp("right"); 
