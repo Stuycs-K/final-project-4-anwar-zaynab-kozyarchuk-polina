@@ -27,5 +27,6 @@ class Lever extends Switch{
     } else {
       c = uLEVER;
     }
+    platform.adjustState();
   }
 }

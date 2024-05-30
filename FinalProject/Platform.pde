@@ -6,4 +6,6 @@ class Platform{
     state = 0;
     stateMax = 1;
   }
+  
+  void adjustState(){}
 }
