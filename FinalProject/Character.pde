@@ -112,9 +112,9 @@ class Character{
     if ((!isDead) && (!atDoor)){
       color c;
       if (isFire()){
-         c = color(204,81,83);
+         c = FIREBOY;
       } else {
-         c = color(104, 226, 242);
+         c = WATERGIRL;
       }
       fill(c);
       rect(position.x, position.y, w, h);
