@@ -6,6 +6,7 @@ public class Map{
   ArrayList<Door> doors; 
   ArrayList<Obstacle> blocks; 
   ArrayList<Switch> switches;
+//  ArrayList<Platform> platforms;
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    

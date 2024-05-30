@@ -47,6 +47,7 @@ class Platform{
   
   void display(){
     PVector currentState = states.get(state);
-    rect(currentState.x, currentState.y,
+    fill(PLATFORM);
+    rect(currentState.x, currentState.y,w,h);
   }
 }

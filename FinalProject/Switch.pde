@@ -24,6 +24,7 @@ abstract class Switch{
   void display(){
     fill(c);
     rect(position.x, position.y, w, h);
+    platform.display();
   }
   
   abstract void toggle(String type);
