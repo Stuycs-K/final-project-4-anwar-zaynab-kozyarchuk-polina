@@ -1,5 +1,8 @@
 abstract class Switch{
+<<<<<<< HEAD
   PVector position;
+=======
+>>>>>>> 9d47571375353adbbb2470783d3da98c47337e06
   color c;
   boolean toggled;
   Platform platform;
