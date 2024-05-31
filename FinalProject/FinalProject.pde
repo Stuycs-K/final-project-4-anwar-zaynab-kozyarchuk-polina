@@ -10,6 +10,8 @@ final color LAVA = color(237, 97, 21);
 final color WATER = color(173, 213, 247);
 final color uLEVER = color(159, 172, 194); //untoggled lever color
 final color tLEVER = color(247, 194, 17);  //toggled lever color
+final color uBUTTON = color(160, 172, 194); //untoggled button color
+final color tBUTTON = color(248, 194, 17);  //toggled button color
 final color PLATFORM = color(181, 155, 201);
 boolean rightF;
 boolean rightW; 
