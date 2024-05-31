@@ -113,7 +113,9 @@ public class Map{
      watergirl.die();
      if (fireboy.isDead || watergirl.isDead){
        background(color(0,0,0));
-       text("AHHAHAHHAHAH LOSER", width- (width/2), height - (height/2)); 
+       textAlign(CENTER); 
+       text("AHHAHAHHAHAH LOSER", width/2, height/3); 
+       text("press spacebar to restart", width/2, height*2/3); 
        return true;
      } else {
        return false;
