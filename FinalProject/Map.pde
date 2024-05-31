@@ -4,6 +4,7 @@ public class Map{
   ArrayList<Door> doors; 
   ArrayList<Obstacle> blocks; 
   int ycor = height - (height/10);
+  int level; 
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    
@@ -13,6 +14,7 @@ public class Map{
    
    public Map(int level){
       if (level == 1){
+       this.level = 1;
        blocks = new ArrayList<Obstacle>(); 
        blocks.add(new Obstacle("goo", width/4, ycor));
        blocks.add(new Obstacle("water", width/2, ycor)); 
@@ -24,10 +26,12 @@ public class Map{
    public void printTutorial(){
      PFont font; 
      font = loadFont("DejaVuSerif-48.vlw"); 
-     textFont(font); 
-     fill(0); 
-     text("use AWD to control fireboy", width/20, height/20); 
-     println("called"); 
+     textFont(font, 15); 
+     fill(212, 217, 255); 
+     text("use AWD to control watergirl", width/20,  height/10);
+     text("use the arrow keys to control waterboy", width/20, height/5); 
+     text("water kills lava and lava kills water...", width/20, height*3/10); 
+     text("and the green goo kills them both", width/20, height*2/5); 
    }
    
    public void showBackground(){
@@ -72,6 +76,9 @@ public class Map{
      showBackground(); 
      displayChars(); 
      displayDoors(); 
+     if (level == 1){
+       printTutorial(); 
+     }
    }
    
    void moveChars(){
