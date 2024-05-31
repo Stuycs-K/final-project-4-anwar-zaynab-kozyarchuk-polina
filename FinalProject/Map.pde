@@ -5,6 +5,8 @@ public class Map{
   ArrayList<Obstacle> blocks; 
   int ycor = height - (height/10);
   int level; 
+  ArrayList<Switch> switches;
+  ArrayList<Platform> platforms;
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    
@@ -59,6 +61,19 @@ public class Map{
      doors.add(new Door(width-10, ycor-fireboy.h, "f"));
      doors.add(new Door(width-10-fireboy.w-8, ycor-fireboy.h, "w"));
      displayDoors();
+     
+     platforms = new ArrayList<Platform>();
+     platforms.add(new Platform(doors.get(1).position.x - 15, doors.get(1).position.y-10));
+     platforms.get(0).addState(platforms.get(0).position.x, platforms.get(0).position.y-30);
+     
+     switches = new ArrayList<Switch>();
+     switches.add(new Lever(watergirl.position.x + 15, watergirl.position.y + 3, platforms.get(0)));
+   }
+   
+   void toggleSwitches(String type){
+     for (int i = 0; i < switches.size(); i++){
+       switches.get(i).toggle(type);
+     }
    }
    
    void displayDoors(){
@@ -72,10 +87,17 @@ public class Map{
      watergirl.display();
    }
    
+   void displaySwitches(){
+     for (int i = 0; i < switches.size(); i++){
+       switches.get(i).display();
+     }     
+   }
+   
    void display(){
      showBackground(); 
      displayChars(); 
      displayDoors(); 
+     //displaySwitches(); 
      if (level == 1){
        printTutorial(); 
      }

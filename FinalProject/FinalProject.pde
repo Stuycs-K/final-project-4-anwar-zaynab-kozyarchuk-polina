@@ -1,12 +1,16 @@
 import java.util.*;
 import java.lang.IndexOutOfBoundsException;
 
+final color FIREBOY = color(204,81,83);
+final color WATERGIRL = color(104, 226, 242);
 final color FIREDOOR = color(180,10,10);
 final color WATERDOOR = color(50, 200, 200);
 final color GOO = color(4, 120, 41);
 final color LAVA = color(237, 97, 21);
 final color WATER = color(173, 213, 247);
-final color LEVER = color(159, 172, 194);
+final color uLEVER = color(159, 172, 194); //untoggled lever color
+final color tLEVER = color(247, 194, 17);  //toggled lever color
+final color PLATFORM = color(181, 155, 201);
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
@@ -39,6 +43,14 @@ void keyPressed(){
     m.watergirl.setJumping(true); 
     m.watergirl.jump(); 
   }
+  
+  if (key == 'e'){
+    m.toggleSwitches("w");
+  }
+  
+  if (key == '/'){
+    m.toggleSwitches("f");
+  }
 }
 
 void keyReleased(){
@@ -52,8 +64,8 @@ void keyReleased(){
   if (key == 'a')
     leftW = false; 
 }
-void draw(){
 
+void draw(){
   if (!m.wonGame() && !m.lostGame()){
     if(rightF && !leftF){
       m.fireboy.speedUp("right"); 

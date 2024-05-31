@@ -10,6 +10,7 @@ public class Obstacle{
     position = new PVector(x, y,0);
     w = 35;
     h = 20;
+    
     if (isLava()){
       c = LAVA;
     } else if (isGoo()){
