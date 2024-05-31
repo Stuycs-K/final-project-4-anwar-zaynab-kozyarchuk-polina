@@ -51,6 +51,10 @@ void keyPressed(){
   if (key == '/'){
     m.toggleSwitches("f");
   }
+  
+  if (m.lostGame() && key == ' '){
+    m.restart(); 
+  }
 }
 
 void keyReleased(){

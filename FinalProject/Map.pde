@@ -21,7 +21,6 @@ public class Map{
        blocks.add(new Obstacle("goo", width/4, ycor));
        blocks.add(new Obstacle("water", width/2, ycor)); 
        blocks.add(new Obstacle("lava", width*3/4, ycor)); 
-       printTutorial(); 
       }
    }
    
@@ -46,6 +45,7 @@ public class Map{
        o.display(); 
      }
    }
+   
    public void setupMap(){
      showBackground(); 
      
@@ -116,6 +116,7 @@ public class Map{
        textAlign(CENTER); 
        text("AHHAHAHHAHAH LOSER", width/2, height/3); 
        text("press spacebar to restart", width/2, height*2/3); 
+       restart(); 
        return true;
      } else {
        return false;
@@ -133,6 +134,10 @@ public class Map{
      } else {
        return false;
      }
+   }
+   
+   void restart(){
+     setupMap(); 
    }
    
 }
