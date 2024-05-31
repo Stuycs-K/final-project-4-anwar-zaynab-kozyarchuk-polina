@@ -13,6 +13,8 @@ final color tLEVER = color(247, 194, 17);  //toggled lever color
 final color uBUTTON = color(160, 172, 194); //untoggled button color
 final color tBUTTON = color(248, 194, 17);  //toggled button color
 final color PLATFORM = color(181, 155, 201);
+final color GROUND = color(163, 123, 47);
+final color BACKGROUND = color(99, 82, 48);
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
@@ -27,7 +29,7 @@ void setup(){
 }
 
 void keyPressed(){
-  if (keyCode == RIGHT)
+  if (keyCode == RIGHT);
     rightF = true;
   if (key == 'd')
     rightW = true; 

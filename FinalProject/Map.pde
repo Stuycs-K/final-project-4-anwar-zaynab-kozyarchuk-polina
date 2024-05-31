@@ -14,7 +14,7 @@ public class Map{
      //fireboy = new Character(); 
      //watergirl = new Character(); 
      blocks = new ArrayList<Obstacle>(); 
-     blocks.add(new Obstacle("goo", width/10, height - height/10)); 
+    // blocks.add(new Obstacle("goo", width/10, height - height/10)); 
    }
    
    public void showBackground(){
