@@ -1,4 +1,5 @@
 class Platform{
+
   PVector position;
   int state;
   int stateMax;

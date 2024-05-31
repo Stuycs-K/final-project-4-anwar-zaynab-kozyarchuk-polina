@@ -23,7 +23,7 @@ Map m;
 
 
 void setup(){
-  size(400, 400); 
+  size(800, 400); 
   m = new Map(); 
   m.setupMap(); 
 }
@@ -99,5 +99,6 @@ void draw(){
     m.moveChars(); 
     m.display(); 
   }
+
 
 }

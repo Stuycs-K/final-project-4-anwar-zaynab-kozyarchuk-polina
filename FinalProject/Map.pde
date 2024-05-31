@@ -1,27 +1,46 @@
 public class Map{
   public Character fireboy;
   public Character watergirl; 
-  
-
   ArrayList<Door> doors; 
   ArrayList<Obstacle> blocks; 
+  int ycor = height - (height/10);
+  int level; 
   ArrayList<Switch> switches;
   ArrayList<Platform> platforms;
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    
    public Map(){
-     //fireboy = new Character(); 
-     //watergirl = new Character(); 
-     blocks = new ArrayList<Obstacle>(); 
-    // blocks.add(new Obstacle("goo", width/10, height - height/10)); 
+     this(1); 
+   }
+   
+   public Map(int level){
+      if (level == 1){
+       this.level = 1;
+       blocks = new ArrayList<Obstacle>(); 
+       blocks.add(new Obstacle("goo", width/4, ycor));
+       blocks.add(new Obstacle("water", width/2, ycor)); 
+       blocks.add(new Obstacle("lava", width*3/4, ycor)); 
+       printTutorial(); 
+      }
+   }
+   
+   public void printTutorial(){
+     PFont font; 
+     font = loadFont("DejaVuSerif-48.vlw"); 
+     textFont(font, 15); 
+     fill(212, 217, 255); 
+     text("use AWD to control watergirl", width/20,  height/10);
+     text("use the arrow keys to control waterboy", width/20, height/5); 
+     text("water kills lava and lava kills water...", width/20, height*3/10); 
+     text("and the green goo kills them both", width/20, height*2/5); 
+>>>>>>> a4f8bc4912c29009f9f98d9e91bf2bc069c87370
    }
    
    public void showBackground(){
      background(99, 82, 48); 
      fill(163, 123, 47); 
      noStroke(); 
-     int ycor = height - (height/10);
      rect(0, ycor, width, (height/10)); 
      
      for (Obstacle o: blocks){
@@ -78,9 +97,11 @@ public class Map{
    void display(){
      showBackground(); 
      displayChars(); 
-     displayDoors();
-     //println("platform position: " + platforms.get(0).position);
-     displaySwitches();
+     displayDoors(); 
+     //displaySwitches(); 
+     if (level == 1){
+       printTutorial(); 
+     }
    }
    
    void moveChars(){
