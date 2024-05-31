@@ -10,39 +10,36 @@ class Platform{
     this(0,0);
   }
   Platform(float x, float y){
-    this(x,y,1);
+    this(x,y,10,30);
   }
-  Platform(float x, float y, int _stateMax){
-    this(x,y,20,10, _stateMax);
-  }
-  Platform(float x, float y, int _w, int _h, int _stateMax){
-    this(x,y,_w,_h,0, _stateMax);
-  }  
-  Platform(float x, float y, int _w, int _h, int _state, int _stateMax){
+  Platform(float x, float y, int _w, int _h){
     position = new PVector(x,y,0);
-    state = _state;
-    stateMax = _stateMax;
+    state = 0;
+    stateMax = 0;
     states = new ArrayList<PVector>();
     states.add(position);
     w = _w;
     h = _h;
   }
   
-  void addState(int x, int y){
-    if (states.size() <= stateMax){
-      states.add(new PVector(x,y,0));
-    } else {
-      throw new IndexOutOfBoundsException("already at max amount of states");
-    }
+  void addState(float x, float y){
+    println("added state");
+    states.add(new PVector(x,y,0));
+    stateMax++;
+    
   }
   
   void adjustState(){
+    println("adjusting state...");
+    println("states.size() : " + states.size());
     if (state < stateMax){
       state++;
     }
     else {
       state =0;
     }
+    position = states.get(state);
+    println("states.get(state) // states.get(" + state + ") : " + position);
   }
   
   void display(){
