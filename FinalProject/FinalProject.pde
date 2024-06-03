@@ -52,7 +52,7 @@ void keyPressed(){
     m.toggleSwitches("f");
   }
   
-  if (m.lostGame() && key == ' '){
+  if ((m.lostGame() || m.wonGame())&& key == ' '){
     m.restart(); 
     println("bad"); 
   }
