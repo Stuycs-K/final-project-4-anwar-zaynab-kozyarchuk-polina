@@ -137,7 +137,8 @@ class Character{
   }
   
   void slowDown(String direction){ 
-    if (direction.equals("right")){
+    PVector bottomRight = bottomRight();
+    if (direction.equals("right") && (get((int) bottomRight.x, (int) bottomRight.y) != PLATFORM)) {
       if (velocity.x <= 0){
         velocity.set(0, velocity.y); 
         acceleration.set(0, acceleration.y); 
