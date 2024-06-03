@@ -161,17 +161,17 @@ class Character{
   }
   
   void speedUp(String direction){
-    PVector bottomRight = new PVector(position.x + w+2, position.y+h-2);
-    boolean boo = get((int) bottomRight.x, (int)bottomRight.y) != PLATFORM;
-    if (boo) {
+    //PVector bottomRight = new PVector(position.x + w+2, position.y+h-2);
+    //boolean boo = get((int) bottomRight.x, (int)bottomRight.y) != PLATFORM;
+    //if (boo) {
       if (direction.equals("right")){
         if (velocity.mag() < 1.5){
-          acceleration.add(0.05, 0); 
+          acceleration.add(0.05, 0 ); 
         }else{
           acceleration.set(0, acceleration.y); 
         }
       }
-    } 
+   // } 
     else if (direction.equals("left")){
       if (velocity.mag() < 1.5){
         acceleration.sub(0.05, 0); 
@@ -179,9 +179,10 @@ class Character{
         acceleration.set(0, acceleration.y); 
       }
     } else {
-      velocity = new PVector(0,0,0);
-    }
+    //  velocity = new PVector(0,0,0);
+    //}
   }
+}
   
   
   void jump(){
