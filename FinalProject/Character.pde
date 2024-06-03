@@ -139,7 +139,6 @@ class Character{
       velocity.set(velocity.x, 0); 
       position.set(position.x, groundY); 
     }
-    
   }
   
   void slowDown(String direction){ 
