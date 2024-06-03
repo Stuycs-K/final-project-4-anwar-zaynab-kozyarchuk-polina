@@ -65,11 +65,11 @@ public class Map{
      displayDoors();
      
      platforms = new ArrayList<Platform>();
-     platforms.add(new Platform(doors.get(1).position.x - 40, doors.get(1).position.y-10));
+     platforms.add(new Platform(doors.get(1).position.x - 80, doors.get(1).position.y-10));
      platforms.get(0).addState(platforms.get(0).position.x, platforms.get(0).position.y-30);
      
      switches = new ArrayList<Switch>();
-     switches.add(new Lever(watergirl.position.x + 40, watergirl.position.y + 3, platforms.get(0)));
+     switches.add(new Lever(watergirl.position.x + 80, watergirl.position.y + 3, platforms.get(0)));
    }
    
    void toggleSwitches(String type){

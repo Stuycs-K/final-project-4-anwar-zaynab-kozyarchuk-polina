@@ -5,7 +5,7 @@ class Character{
   String type;
   int h;
   int w;
-  float groundY;
+  public float groundY;
   boolean jumping; 
   boolean atDoor;
   boolean isDead;
@@ -37,9 +37,17 @@ class Character{
     return type.equals("w");
   }
   
-  void setPosition(int x, int y){
+  void setPosition(float x, float y){
     position = new PVector(x,y,0);
     groundY = position.y; 
+  }
+  
+  float getX(){
+    return position.x;
+  }
+  
+  float getY(){
+    return position.y;
   }
   
   //using the rightmost edge of the character
