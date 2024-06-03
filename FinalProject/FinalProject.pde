@@ -29,10 +29,12 @@ void setup(){
 }
 
 void keyPressed(){
-  if (keyCode == RIGHT);
+  if (keyCode == RIGHT){
     rightF = true;
-  if (key == 'd')
+  }
+  if (key == 'd'){
     rightW = true; 
+  }
     
   if (keyCode == LEFT)
     leftF = true;
