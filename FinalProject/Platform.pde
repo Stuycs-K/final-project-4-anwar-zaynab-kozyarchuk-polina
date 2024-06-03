@@ -24,7 +24,6 @@ class Platform{
   }
   
   void addState(float x, float y){
-    println("added state");
     states.add(new PVector(x,y,0));
     stateMax++;
     
