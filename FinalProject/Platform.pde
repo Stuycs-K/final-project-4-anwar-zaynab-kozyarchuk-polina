@@ -11,7 +11,7 @@ class Platform{
     this(0,0);
   }
   Platform(float x, float y){
-    this(x,y,10,30);
+    this(x,y,20,30);
   }
   Platform(float x, float y, int _w, int _h){
     position = new PVector(x,y,0);

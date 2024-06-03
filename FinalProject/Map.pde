@@ -64,7 +64,7 @@ public class Map{
      displayDoors();
      
      platforms = new ArrayList<Platform>();
-     platforms.add(new Platform(doors.get(1).position.x - 15, doors.get(1).position.y-10));
+     platforms.add(new Platform(doors.get(1).position.x - 600, doors.get(1).position.y-10));
      platforms.get(0).addState(platforms.get(0).position.x, platforms.get(0).position.y-30);
      
      switches = new ArrayList<Switch>();
@@ -98,7 +98,7 @@ public class Map{
      showBackground(); 
      displayChars(); 
      displayDoors(); 
-     //displaySwitches(); 
+     displaySwitches(); 
      printTutorial(); 
    }
    
