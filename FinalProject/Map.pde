@@ -1,33 +1,52 @@
 public class Map{
   public Character fireboy;
   public Character watergirl; 
-  
-
   ArrayList<Door> doors; 
   ArrayList<Obstacle> blocks; 
+  int ycor = height - (height/10);
+  int level; 
   ArrayList<Switch> switches;
   ArrayList<Platform> platforms;
  //ArrayList<Gem> gems; 
  //int collectedGems; 
    
    public Map(){
-     //fireboy = new Character(); 
-     //watergirl = new Character(); 
-     blocks = new ArrayList<Obstacle>(); 
-     blocks.add(new Obstacle("goo", width/10, height - height/10)); 
+     this(1); 
+   }
+   
+   public Map(int level){
+      if (level == 1){
+       this.level = 1;
+       blocks = new ArrayList<Obstacle>(); 
+       blocks.add(new Obstacle("goo", width/4, ycor));
+       blocks.add(new Obstacle("water", width/2, ycor)); 
+       blocks.add(new Obstacle("lava", width*3/4, ycor)); 
+      }
+   }
+   
+   public void printTutorial(){
+     PFont font; 
+     font = loadFont("DejaVuSerif-48.vlw"); 
+     textFont(font, 15); 
+     fill(212, 217, 255); 
+     textAlign(LEFT); 
+     text("use AWD to control watergirl", 40,  height/10);
+     text("use the arrow keys to control waterboy", 40, height/5); 
+     text("water kills lava and lava kills water...", 40, height*3/10); 
+     text("and the green goo kills them both", 40, height*2/5); 
    }
    
    public void showBackground(){
      background(99, 82, 48); 
      fill(163, 123, 47); 
      noStroke(); 
-     int ycor = height - (height/10);
      rect(0, ycor, width, (height/10)); 
      
      for (Obstacle o: blocks){
        o.display(); 
      }
    }
+   
    public void setupMap(){
      showBackground(); 
      
@@ -78,9 +97,9 @@ public class Map{
    void display(){
      showBackground(); 
      displayChars(); 
-     displayDoors();
-     //println("platform position: " + platforms.get(0).position);
-     displaySwitches();
+     displayDoors(); 
+     //displaySwitches(); 
+     printTutorial(); 
    }
    
    void moveChars(){
@@ -93,7 +112,9 @@ public class Map{
      watergirl.die();
      if (fireboy.isDead || watergirl.isDead){
        background(color(0,0,0));
-       text("AHHAHAHHAHAH LOSER", width- (width/2), height - (height/2)); 
+       textAlign(CENTER); 
+       text("AHHAHAHHAHAH LOSER", width/2, height/3); 
+       text("press spacebar to restart", width/2, height*2/3); 
        return true;
      } else {
        return false;
@@ -111,6 +132,10 @@ public class Map{
      } else {
        return false;
      }
+   }
+   
+   void restart(){
+     setupMap(); 
    }
    
 }

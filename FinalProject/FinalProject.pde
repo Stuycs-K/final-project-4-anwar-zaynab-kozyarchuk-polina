@@ -19,7 +19,7 @@ Map m;
 
 
 void setup(){
-  size(400, 400); 
+  size(800, 400); 
   m = new Map(); 
   m.setupMap(); 
 }
@@ -50,6 +50,11 @@ void keyPressed(){
   
   if (key == '/'){
     m.toggleSwitches("f");
+  }
+  
+  if (m.lostGame() && key == ' '){
+    m.restart(); 
+    println("bad"); 
   }
 }
 
@@ -95,5 +100,6 @@ void draw(){
     m.moveChars(); 
     m.display(); 
   }
+
 
 }

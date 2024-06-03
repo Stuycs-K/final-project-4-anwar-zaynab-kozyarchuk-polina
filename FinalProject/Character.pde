@@ -95,13 +95,13 @@ class Character{
       setPosition(-10,-10);
     }
     if (isFire()){
-      if (inProximity(LAVA,1)){
+      if (inProximity(WATER,1)){
         isDead = true;
         setPosition(-10,-10);
       }
     }
     else {
-      if (inProximity(WATER,1)){
+      if (inProximity(LAVA,1)){
         isDead = true;
         setPosition(-10,-10);
       }
@@ -118,9 +118,7 @@ class Character{
       }
       fill(c);
       rect(position.x, position.y, w, h);
-    } else {
-      println(type + " doesn't exist!");
-    }
+    } 
   }
   
   void move(){
@@ -157,14 +155,14 @@ class Character{
   
   void speedUp(String direction){
     if (direction.equals("right")){
-      if (velocity.mag() < 1){
+      if (velocity.mag() < 1.5){
         acceleration.add(0.05, 0); 
       }else{
         acceleration.set(0, acceleration.y); 
       }
     }
     else if (direction.equals("left")){
-      if (velocity.mag() < 1){
+      if (velocity.mag() < 1.5){
         acceleration.sub(0.05, 0); 
       }else{
         acceleration.set(0, acceleration.y); 
@@ -175,7 +173,7 @@ class Character{
   
   void jump(){
     acceleration.add(0, 0.5); 
-    velocity.add(0, -7); 
+    velocity.add(0, -8); 
   }
   
   boolean isJumping(){
