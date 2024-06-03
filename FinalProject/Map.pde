@@ -32,8 +32,9 @@ public class Map{
      textAlign(LEFT); 
      text("use AWD to control watergirl", 40,  height/10);
      text("use the arrow keys to control waterboy", 40, height/5); 
-     text("water kills lava and lava kills water...", 40, height*3/10); 
-     text("and the green goo kills them both", 40, height*2/5); 
+     text("use / and e to toggle levers", 40, height*3/10); 
+     text("water kills lava and lava kills water...", 40, height*2/5); 
+     text("and the green goo kills them both", 40, height*1/2); 
    }
    
    public void showBackground(){
@@ -64,11 +65,11 @@ public class Map{
      displayDoors();
      
      platforms = new ArrayList<Platform>();
-     platforms.add(new Platform(doors.get(1).position.x - 600, doors.get(1).position.y-10));
+     platforms.add(new Platform(doors.get(1).position.x - 80, doors.get(1).position.y-10));
      platforms.get(0).addState(platforms.get(0).position.x, platforms.get(0).position.y-30);
      
      switches = new ArrayList<Switch>();
-     switches.add(new Lever(watergirl.position.x + 15, watergirl.position.y + 3, platforms.get(0)));
+     switches.add(new Lever(watergirl.position.x + 80, watergirl.position.y + 3, platforms.get(0)));
    }
    
    void toggleSwitches(String type){

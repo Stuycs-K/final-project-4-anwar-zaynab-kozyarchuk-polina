@@ -5,7 +5,7 @@ class Character{
   String type;
   int h;
   int w;
-  float groundY;
+  public float groundY;
   boolean jumping; 
   boolean atDoor;
   boolean isDead;
@@ -37,9 +37,17 @@ class Character{
     return type.equals("w");
   }
   
-  void setPosition(int x, int y){
+  void setPosition(float x, float y){
     position = new PVector(x,y,0);
     groundY = position.y; 
+  }
+  
+  float getX(){
+    return position.x;
+  }
+  
+  float getY(){
+    return position.y;
   }
   
   //using the rightmost edge of the character
@@ -156,21 +164,23 @@ class Character{
   void speedUp(String direction){
     PVector bottomRight = new PVector(position.x + w+2, position.y+h-2);
     boolean boo = get((int) bottomRight.x, (int)bottomRight.y) != PLATFORM;
-    println(get((int) bottomRight.x, (int)bottomRight.y));
-    println(boo);
-    if (direction.equals("right") && boo){
-      if (velocity.mag() < 1.5){
-        acceleration.add(0.05, 0); 
-      }else{
-        acceleration.set(0, acceleration.y); 
+    if (boo) {
+      if (direction.equals("right")){
+        if (velocity.mag() < 1.5){
+          acceleration.add(0.05, 0); 
+        }else{
+          acceleration.set(0, acceleration.y); 
+        }
       }
-    }
+    } 
     else if (direction.equals("left")){
       if (velocity.mag() < 1.5){
         acceleration.sub(0.05, 0); 
       }else{
         acceleration.set(0, acceleration.y); 
       }
+    } else {
+      velocity = new PVector(0,0,0);
     }
   }
   
