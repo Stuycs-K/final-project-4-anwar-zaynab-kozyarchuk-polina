@@ -34,7 +34,6 @@ public class Map{
      text("use the arrow keys to control waterboy", width/20, height/5); 
      text("water kills lava and lava kills water...", width/20, height*3/10); 
      text("and the green goo kills them both", width/20, height*2/5); 
->>>>>>> a4f8bc4912c29009f9f98d9e91bf2bc069c87370
    }
    
    public void showBackground(){
