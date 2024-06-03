@@ -9,6 +9,7 @@ class Character{
   boolean jumping; 
   boolean atDoor;
   boolean isDead;
+  PImage img; 
   
   Character(int x, int y, String str){
     //top left coordinate
@@ -27,6 +28,12 @@ class Character{
     groundY = y;    
     atDoor = false;
     isDead = false;
+    
+    if (str.equals("w"))
+    img = loadImage("watergirl.png"); 
+    image(img, 0, 0); 
+    //if (str.equals("f"))
+    //img = loadImage("fireboy.webp"); 
   }
   
   boolean isFire(){
@@ -119,6 +126,7 @@ class Character{
       fill(c);
       rect(position.x, position.y, w, h);
     } 
+    
   }
   
   void move(){

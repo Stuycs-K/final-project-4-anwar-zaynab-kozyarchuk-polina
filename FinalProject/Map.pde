@@ -32,8 +32,9 @@ public class Map{
      textAlign(LEFT); 
      text("use AWD to control watergirl", 40,  height/10);
      text("use the arrow keys to control waterboy", 40, height/5); 
-     text("water kills lava and lava kills water...", 40, height*3/10); 
-     text("and the green goo kills them both", 40, height*2/5); 
+     text("use / and e to toggle levers", 40, height*3/10); 
+     text("water kills lava and lava kills water...", 40, height*2/5); 
+     text("and the green goo kills them both", 40, height*1/2); 
    }
    
    public void showBackground(){
