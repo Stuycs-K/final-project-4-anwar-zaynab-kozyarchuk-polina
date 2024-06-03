@@ -60,6 +60,7 @@ void keyPressed(){
   
   if (m.lostGame() && key == ' '){
     m.restart(); 
+    println("bad"); 
   }
 }
 

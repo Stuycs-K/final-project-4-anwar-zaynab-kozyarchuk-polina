@@ -29,10 +29,11 @@ public class Map{
      font = loadFont("DejaVuSerif-48.vlw"); 
      textFont(font, 15); 
      fill(212, 217, 255); 
-     text("use AWD to control watergirl", width/20,  height/10);
-     text("use the arrow keys to control waterboy", width/20, height/5); 
-     text("water kills lava and lava kills water...", width/20, height*3/10); 
-     text("and the green goo kills them both", width/20, height*2/5); 
+     textAlign(LEFT); 
+     text("use AWD to control watergirl", 40,  height/10);
+     text("use the arrow keys to control waterboy", 40, height/5); 
+     text("water kills lava and lava kills water...", 40, height*3/10); 
+     text("and the green goo kills them both", 40, height*2/5); 
    }
    
    public void showBackground(){
@@ -102,6 +103,7 @@ public class Map{
        printTutorial(); 
      }
    }
+
    
    void moveChars(){
      fireboy.move(); 
@@ -116,7 +118,6 @@ public class Map{
        textAlign(CENTER); 
        text("AHHAHAHHAHAH LOSER", width/2, height/3); 
        text("press spacebar to restart", width/2, height*2/3); 
-       restart(); 
        return true;
      } else {
        return false;
