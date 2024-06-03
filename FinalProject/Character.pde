@@ -69,7 +69,7 @@ class Character{
   }
   
   PVector bottomRight(){
-    return new PVector(position.x+w, position.y+h,0);
+    return new PVector(position.x+w+1, position.y+h-2,0);
   }
   
   void reachGoal(){
@@ -161,17 +161,21 @@ class Character{
   }
   
   void speedUp(String direction){
-    //PVector bottomRight = new PVector(position.x + w+2, position.y+h-2);
-    //boolean boo = get((int) bottomRight.x, (int)bottomRight.y) != PLATFORM;
-    //if (boo) {
       if (direction.equals("right")){
-        if (velocity.mag() < 1.5){
-          acceleration.add(0.05, 0 ); 
-        }else{
-          acceleration.set(0, acceleration.y); 
+        PVector bottomRight = bottomRight();
+        boolean ableToMove = get((int) bottomRight.x, (int)bottomRight.y) != PLATFORM;
+        println("color:" + get((int) bottomRight.x, (int)bottomRight.y));
+        println("ableToMove: " + ableToMove);
+        if (ableToMove){
+          if (velocity.mag() < 1.5){
+            acceleration.add(0.05, 0 ); 
+          }else{
+            acceleration.set(0, acceleration.y); 
+          }
+        } else {
+          velocity = new PVector(0,0,0);
         }
       }
-   // } 
     else if (direction.equals("left")){
       if (velocity.mag() < 1.5){
         acceleration.sub(0.05, 0); 
@@ -179,8 +183,6 @@ class Character{
         acceleration.set(0, acceleration.y); 
       }
     } else {
-    //  velocity = new PVector(0,0,0);
-    //}
   }
 }
   
