@@ -93,7 +93,6 @@ class Character{
     if (inProximity(GOO,1)){
       isDead = true;
       setPosition(-10,-10);
-      println("goo"); 
     }
     if (isFire()){
       if (inProximity(WATER,1)){
@@ -119,9 +118,7 @@ class Character{
       }
       fill(c);
       rect(position.x, position.y, w, h);
-    } else {
-      println(type + " doesn't exist!");
-    }
+    } 
   }
   
   void move(){
