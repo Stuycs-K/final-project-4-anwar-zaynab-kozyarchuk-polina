@@ -70,6 +70,7 @@ public class Map{
      
      switches = new ArrayList<Switch>();
      switches.add(new Lever(watergirl.position.x + 80, watergirl.position.y + 3, platforms.get(0)));
+
    }
    
    void toggleSwitches(String type){
@@ -104,6 +105,7 @@ public class Map{
    }
    
    void moveChars(){
+     obstacleCollisions(); 
      fireboy.move(); 
      watergirl.move(); 
    }
@@ -138,7 +140,12 @@ public class Map{
    void restart(){
      setupMap(); 
    }
-   
-   
+
+   void obstacleCollisions(){
+     for (Platform p : platforms){
+       fireboy.collide(p);
+       watergirl.collide(p); 
+     }
+   }
    
 }

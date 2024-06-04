@@ -27,6 +27,7 @@ class Character{
     groundY = y;    
     atDoor = false;
     isDead = false;
+  
   }
   
   boolean isFire(){
@@ -127,9 +128,32 @@ class Character{
       fill(c);
       rect(position.x, position.y, w, h);
     } 
+        
   }
   
-  void move(){
+  
+  void collide(Platform p){
+    if (velocity.x > 0){
+      if (PVector.dist(bottomRight(), p.bottomLeft()) < 2){
+        velocity.set(0, 0); 
+        acceleration.set(0, 0); 
+        position.set(p.topLeft().x - w - 1, groundY); 
+        jumping = false; 
+      }
+    }
+    
+    if (velocity.x < 0){
+      if (PVector.dist(bottomLeft(), p.bottomRight()) < 2){
+        velocity.set(0, 0); 
+        acceleration.set(0, 0); 
+        position.set(p.topRight().x + 1, groundY); 
+        jumping = false; 
+      }
+    }
+  }
+  
+  
+  void move(){    
     velocity.add(acceleration); 
     position.add(velocity); 
     
@@ -164,8 +188,7 @@ class Character{
       if (direction.equals("right")){
         PVector bottomRight = bottomRight();
         boolean ableToMove = get((int) bottomRight.x, (int)bottomRight.y) != PLATFORM;
-        println("color:" + get((int) bottomRight.x, (int)bottomRight.y));
-        println("ableToMove: " + ableToMove);
+       
         if (ableToMove){
           if (velocity.mag() < 1.5){
             acceleration.add(0.05, 0 ); 

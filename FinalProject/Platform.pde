@@ -47,4 +47,20 @@ class Platform{
     fill(PLATFORM);
     rect(currentState.x, currentState.y,w,h);
   }
+  
+  PVector topLeft(){
+    return position;
+  }
+  
+  PVector topRight(){
+    return new PVector(position.x+w, position.y,0);
+  }
+  
+  PVector bottomLeft(){
+    return new PVector(position.x, position.y+h, 0);
+  }
+  
+  PVector bottomRight(){
+    return new PVector(position.x+w, position.y+h,0);
+  }
 }
