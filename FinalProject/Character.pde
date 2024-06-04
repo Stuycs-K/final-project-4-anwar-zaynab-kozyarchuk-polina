@@ -70,7 +70,7 @@ class Character{
   }
   
   PVector bottomRight(){
-    return new PVector(position.x+w+1, position.y+h-2,0);
+    return new PVector(position.x+w, position.y+h,0);
   }
   
   void reachGoal(){
