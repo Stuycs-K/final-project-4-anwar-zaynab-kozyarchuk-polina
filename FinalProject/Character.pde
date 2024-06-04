@@ -199,7 +199,7 @@ class Character{
         acceleration.set(0, acceleration.y); 
       }
     } 
-}
+  }
   
   
   void jump(){
