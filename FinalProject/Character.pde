@@ -134,19 +134,19 @@ class Character{
   
   void collide(Platform p){
     if (velocity.x > 0){
-      if (PVector.dist(topRight(), p.topLeft()) < 2){
+      if (PVector.dist(bottomRight(), p.bottomLeft()) < 2){
         velocity.set(0, 0); 
         acceleration.set(0, 0); 
-        position.set(p.topLeft().x - w - 1, position.y); 
+        position.set(p.topLeft().x - w - 1, groundY); 
         jumping = false; 
       }
     }
     
     if (velocity.x < 0){
-      if (PVector.dist(topLeft(), p.topRight()) < 2){
+      if (PVector.dist(bottomLeft(), p.bottomRight()) < 2){
         velocity.set(0, 0); 
         acceleration.set(0, 0); 
-        position.set(p.topRight().x + 1, position.y); 
+        position.set(p.topRight().x + 1, groundY); 
         jumping = false; 
       }
     }
