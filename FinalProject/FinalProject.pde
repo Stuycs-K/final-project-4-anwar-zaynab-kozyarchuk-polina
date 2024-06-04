@@ -22,6 +22,8 @@ void setup(){
   size(800, 400); 
   m = new Map(); 
   m.setupMap(); 
+  
+   
 }
 
 void keyPressed(){
@@ -71,6 +73,7 @@ void keyReleased(){
 }
 
 void draw(){
+  
   if (!m.wonGame() && !m.lostGame()){
     if(rightF && !leftF){
       m.fireboy.speedUp("right"); 

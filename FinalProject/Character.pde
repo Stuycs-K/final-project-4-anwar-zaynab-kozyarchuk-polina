@@ -9,7 +9,6 @@ class Character{
   boolean jumping; 
   boolean atDoor;
   boolean isDead;
-  PImage img; 
   
   Character(int x, int y, String str){
     //top left coordinate
@@ -28,12 +27,7 @@ class Character{
     groundY = y;    
     atDoor = false;
     isDead = false;
-    
-    if (str.equals("w"))
-    img = loadImage("watergirl.png"); 
-    image(img, 0, 0); 
-    //if (str.equals("f"))
-    //img = loadImage("fireboy.webp"); 
+  
   }
   
   boolean isFire(){
@@ -47,6 +41,14 @@ class Character{
   void setPosition(int x, int y){
     position = new PVector(x,y,0);
     groundY = position.y; 
+  }
+  
+  float getX(){
+    return position.x; 
+  }
+  
+  float getY(){
+    return position.y; 
   }
   
   //using the rightmost edge of the character
@@ -126,10 +128,32 @@ class Character{
       fill(c);
       rect(position.x, position.y, w, h);
     } 
-    
+        
   }
   
-  void move(){
+  
+  void collide(Platform p){
+    if (velocity.x > 0){
+      if (PVector.dist(topRight(), p.topLeft()) < 2){
+        velocity.set(0, 0); 
+        acceleration.set(0, 0); 
+        position.set(p.topLeft().x - w - 1, position.y); 
+        jumping = false; 
+      }
+    }
+    
+    if (velocity.x < 0){
+      if (PVector.dist(topLeft(), p.topRight()) < 2){
+        velocity.set(0, 0); 
+        acceleration.set(0, 0); 
+        position.set(p.topRight().x + 1, position.y); 
+        jumping = false; 
+      }
+    }
+  }
+  
+  
+  void move(){    
     velocity.add(acceleration); 
     position.add(velocity); 
     

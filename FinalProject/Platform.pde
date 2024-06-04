@@ -30,8 +30,8 @@ class Platform{
   }
   
   void adjustState(){
-    println("adjusting state...");
-    println("states.size() : " + states.size());
+    //println("adjusting state...");
+    //println("states.size() : " + states.size());
     if (state < stateMax){
       state++;
     }
@@ -39,12 +39,28 @@ class Platform{
       state =0;
     }
     position = states.get(state);
-    println("states.get(state) // states.get(" + state + ") : " + position);
+    //println("states.get(state) // states.get(" + state + ") : " + position);
   }
   
   void display(){
     PVector currentState = states.get(state);
     fill(PLATFORM);
     rect(currentState.x, currentState.y,w,h);
+  }
+  
+  PVector topLeft(){
+    return position;
+  }
+  
+  PVector topRight(){
+    return new PVector(position.x+w, position.y,0);
+  }
+  
+  PVector bottomLeft(){
+    return new PVector(position.x, position.y+h, 0);
+  }
+  
+  PVector bottomRight(){
+    return new PVector(position.x+w, position.y+h,0);
   }
 }
