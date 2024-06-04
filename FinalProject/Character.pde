@@ -27,6 +27,7 @@ class Character{
     groundY = y;    
     atDoor = false;
     isDead = false;
+  
   }
   
   boolean isFire(){
@@ -40,6 +41,14 @@ class Character{
   void setPosition(int x, int y){
     position = new PVector(x,y,0);
     groundY = position.y; 
+  }
+  
+  float getX(){
+    return position.x; 
+  }
+  
+  float getY(){
+    return position.y; 
   }
   
   //using the rightmost edge of the character
@@ -119,9 +128,32 @@ class Character{
       fill(c);
       rect(position.x, position.y, w, h);
     } 
+        
   }
   
-  void move(){
+  
+  void collide(Platform p){
+    if (velocity.x > 0){
+      if (PVector.dist(bottomRight(), p.bottomLeft()) < 2){
+        velocity.set(0, 0); 
+        acceleration.set(0, 0); 
+        position.set(p.topLeft().x - w - 1, groundY); 
+        jumping = false; 
+      }
+    }
+    
+    if (velocity.x < 0){
+      if (PVector.dist(bottomLeft(), p.bottomRight()) < 2){
+        velocity.set(0, 0); 
+        acceleration.set(0, 0); 
+        position.set(p.topRight().x + 1, groundY); 
+        jumping = false; 
+      }
+    }
+  }
+  
+  
+  void move(){    
     velocity.add(acceleration); 
     position.add(velocity); 
     
