@@ -186,19 +186,27 @@ class Character{
   
   void speedUp(String direction){
       if (direction.equals("right")){
-        if (velocity.mag() < 1.5){
-          acceleration.add(0.05, 0 ); 
-        }else{
-          acceleration.set(0, acceleration.y); 
-        }  
-    }
+        PVector bottomRight = bottomRight();
+        boolean ableToMove = get((int) bottomRight.x, (int)bottomRight.y) != PLATFORM;
+       
+        if (ableToMove){
+          if (velocity.mag() < 1.5){
+            acceleration.add(0.05, 0 ); 
+          }else{
+            acceleration.set(0, acceleration.y); 
+          }
+        } else {
+          velocity = new PVector(0,0,0);
+        }
+      }
     else if (direction.equals("left")){
       if (velocity.mag() < 1.5){
         acceleration.sub(0.05, 0); 
       }else{
         acceleration.set(0, acceleration.y); 
       }
-    } 
+    } else {
+  }
 }
   
   
