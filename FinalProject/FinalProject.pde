@@ -56,11 +56,14 @@ void keyPressed(){
   
   if ((m.lostGame() || m.wonGame())&& key == ' '){
     m.restart(); 
+<<<<<<< HEAD
   }
   
   if (key == 'y'){
     m.fireboy.setPosition(width - 40, m.fireboy.getY()); 
     m.watergirl.setPosition(width - 40, m.watergirl.getY()); 
+=======
+>>>>>>> 90435e5b84f02c6b0c5b19ee4bc0f90370e7ba2a
   }
 }
 
