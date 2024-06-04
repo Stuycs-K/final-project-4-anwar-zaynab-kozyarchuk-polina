@@ -70,6 +70,7 @@ public class Map{
      
      switches = new ArrayList<Switch>();
      switches.add(new Lever(watergirl.position.x + 60, watergirl.position.y + 3, platforms.get(0)));
+
    }
    
    void toggleSwitches(String type){
