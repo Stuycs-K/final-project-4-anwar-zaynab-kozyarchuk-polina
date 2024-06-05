@@ -19,7 +19,7 @@ Map m;
 
 
 void setup(){
-  size(800, 400); 
+  size(800, 800); 
   m = new Map(); 
   m.setupMap(); 
   

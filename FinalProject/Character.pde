@@ -22,8 +22,8 @@ class Character{
     } else {
       throw new IllegalArgumentException("illegal argument");
     }
-    h = height/20;
-    w = h / 2;
+    h = 20;
+    w = 10;
     groundY = y;    
     atDoor = false;
     isDead = false;
