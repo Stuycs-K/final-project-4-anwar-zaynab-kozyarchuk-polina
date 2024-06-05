@@ -22,6 +22,7 @@ public class Map{
        blocks.add(new Obstacle("water", width/2, ycor)); 
        blocks.add(new Obstacle("lava", width*3/4, ycor)); 
       }
+
    }
    
    public void printTutorial(){
