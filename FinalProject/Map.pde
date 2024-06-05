@@ -22,6 +22,7 @@ public class Map{
        blocks.add(new Obstacle("water", width/2, ycor)); 
        blocks.add(new Obstacle("lava", width*3/4, ycor)); 
       }
+
    }
    
    public void printTutorial(){
@@ -30,11 +31,11 @@ public class Map{
      textFont(font, 15); 
      fill(212, 217, 255); 
      textAlign(LEFT); 
-     text("use AWD to control watergirl", 40,  height/10);
-     text("use the arrow keys to control waterboy", 40, height/5); 
-     text("use / and e to toggle levers", 40, height*3/10); 
-     text("water kills lava and lava kills water...", 40, height*2/5); 
-     text("and the green goo kills them both", 40, height*1/2); 
+     text("use AWD to control watergirl", 40,  40);
+     text("use the arrow keys to control waterboy", 40, 80); 
+     text("use / and e to toggle levers", 40, 120); 
+     text("water kills lava and lava kills water...", 40, 160); 
+     text("and the green goo kills them both", 40, 200); 
    }
    
    public void showBackground(){
