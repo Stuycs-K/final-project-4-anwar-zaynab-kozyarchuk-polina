@@ -18,11 +18,16 @@ public class Map{
       if (level == 1){
        this.level = 1;
        blocks = new ArrayList<Obstacle>(); 
+       blocks.add(new Obstacle("ground", 0, height - 40)); 
        blocks.add(new Obstacle("goo", width/4, ycor));
        blocks.add(new Obstacle("water", width/2, ycor)); 
        blocks.add(new Obstacle("lava", width*3/4, ycor)); 
       }
-
+       
+      if (level == 2){
+        this.level = 2; 
+        blocks = new ArrayList<Obstacle>(); 
+      }
    }
    
    public void printTutorial(){
@@ -40,9 +45,9 @@ public class Map{
    
    public void showBackground(){
      background(99, 82, 48); 
-     fill(163, 123, 47); 
-     noStroke(); 
-     rect(0, ycor, width, (height/10)); 
+     //fill(163, 123, 47); 
+     //noStroke(); 
+     //rect(0, ycor, width, (height/10)); 
      
      for (Obstacle o: blocks){
        o.display(); 
