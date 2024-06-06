@@ -9,6 +9,7 @@ public class Map{
   ArrayList<Platform> platforms;
  //ArrayList<Gem> gems; 
  //int collectedGems; 
+ int timer; 
    
    public Map(){
      this(1); 
@@ -46,6 +47,7 @@ public class Map{
    }
    
    public void setupMap(){ 
+     timer = 0;
      blocks = new ArrayList<Obstacle>(); 
      doors = new ArrayList<Door>();
      platforms = new ArrayList<Platform>();
@@ -144,13 +146,19 @@ public class Map{
      }     
    }
    
-   void display(){
+   void display(){ 
      showBackground(); 
      displayChars(); 
      displayDoors(); 
      displaySwitches();
+     displayTimer();
+     
      if (level == 1)
        printTutorial(); 
+     
+     if (frameCount % 100 == 0){
+       timer++;
+     }
    }
    
    void moveChars(){ 
@@ -208,6 +216,26 @@ public class Map{
        fireboy.interact(o); 
        watergirl.interact(o); 
      }
+   }
+   
+   void displayTimer(){
+     String s = ""; 
+     if (timer/60 < 10){
+       s += "0"; 
+     }
+     s += (timer/60) + ":";
+     if (timer%60 < 10){
+       s += "0"; 
+     }
+     s+= timer%60; 
+     
+     textAlign(CENTER); 
+     fill(0); 
+     PFont font; 
+     font = loadFont("DejaVuSerif-48.vlw"); 
+     textFont(font, 30); 
+     text(s, width/2, 40); 
+     textAlign(LEFT); 
    }
    
 }
