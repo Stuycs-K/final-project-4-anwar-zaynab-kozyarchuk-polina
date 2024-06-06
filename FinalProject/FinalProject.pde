@@ -21,7 +21,7 @@ Map m;
 
 void setup(){
   size(800, 700); 
-  m = new Map(); 
+  m = new Map(2); 
   m.setupMap(); 
   
    

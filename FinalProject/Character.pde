@@ -135,20 +135,37 @@ class Character{
   void collide(Platform p){
     if (velocity.x > 0){
       if (PVector.dist(bottomRight(), p.bottomLeft()) < 2){
-        velocity.set(0, 0); 
-        acceleration.set(0, 0); 
-        position.set(p.topLeft().x - w - 1, groundY); 
-        jumping = false; 
+        stop();
+        position.set(p.topLeft().x - w - 1, groundY);  
       }
     }
     
     if (velocity.x < 0){
       if (PVector.dist(bottomLeft(), p.bottomRight()) < 2){
-        velocity.set(0, 0); 
-        acceleration.set(0, 0); 
+        stop();
         position.set(p.topRight().x + 1, groundY); 
-        jumping = false; 
       }
+    }
+  }
+  
+  //kinda like the same as collide but for obstacles instead of platforms
+  void interact(Obstacle o){
+    if (velocity.x > 0){
+      if (PVector.dist(bottomRight(), o.bottomLeft()) < 2){
+        stop(); 
+        position.set(o.bottomLeft().x - w - 1, o.bottomLeft().y - h); 
+      }
+    }
+    
+    if (velocity.x < 0){
+      if (PVector.dist(bottomLeft(), o.bottomRight()) < 2){
+        stop();
+        position.set(o.bottomRight().x + 1, o.bottomRight().y - h); 
+      }
+    }
+    
+    if (PVector.dist(bottomRight(), o.topLeft()) < 2){
+      position.set(position.x, o.topLeft().y - 1 - h); 
     }
   }
   
@@ -201,6 +218,11 @@ class Character{
     } 
   }
   
+  void stop(){
+    velocity.set(0, 0); 
+    acceleration.set(0, 0); 
+    jumping = false; 
+  }
   
   void jump(){
     acceleration.add(0, 0.5); 

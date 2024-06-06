@@ -31,7 +31,7 @@ public class Obstacle{
   }
   
   public Obstacle(String type, int x, int y, int w, int h){
-    if (type.equals("goo")){
+    if (type.equals("ground")){
       this.type = type; 
       position = new PVector(x, y);
       c = GROUND; 
@@ -60,11 +60,26 @@ public class Obstacle{
     return position;   
   }
   
+  PVector topLeft(){
+    return position;
+  }
+  
+  PVector topRight(){
+    return new PVector(position.x+w, position.y,0);
+  }
+  
+  PVector bottomLeft(){
+    return new PVector(position.x, position.y+h, 0);
+  }
+  
+  PVector bottomRight(){
+    return new PVector(position.x+w, position.y+h,0);
+  }
+  
   public void display(){
     float x =  position.x; 
     float y =  position.y; 
     fill(c);
     rect(x, y, w, h); 
   }
-
 }

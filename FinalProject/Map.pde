@@ -75,12 +75,23 @@ public class Map{
        
        switches.add(new Lever(watergirl.position.x + 60, watergirl.position.y + 3, platforms.get(0)));
        
-       showBackground();
      }
      
      if (level == 2){
+       //fireboy.setPosition(600, fireboy.getY()); 
+       //watergirl.setPosition(620, watergirl.getY()); 
+       
+       // first level
        blocks.add(new Obstacle("ground", 0, height - 40)); 
+       
+       // second level
+       blocks.add(new Obstacle("ground", 0, height - 180, width - 150, 20)); 
+       
+       // step up
+       blocks.add(new Obstacle("ground", width - 500, height - 80, 100, 40)); 
      }
+     
+     showBackground(); 
    }
    
    void toggleSwitches(String type){
@@ -115,7 +126,8 @@ public class Map{
    }
    
    void moveChars(){
-     obstacleCollisions(); 
+     platformCollisions(); 
+     obstacleInteractions(); 
      fireboy.move(); 
      watergirl.move(); 
    }
@@ -151,10 +163,17 @@ public class Map{
      setupMap(); 
    }
    
-   void obstacleCollisions(){
+   void platformCollisions(){
      for (Platform p : platforms){
        fireboy.collide(p);
        watergirl.collide(p); 
+     }
+   }
+   
+   void obstacleInteractions(){
+     for (Obstacle o : blocks){
+       fireboy.interact(o); 
+       watergirl.interact(o); 
      }
    }
    
