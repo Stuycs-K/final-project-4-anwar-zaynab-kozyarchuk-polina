@@ -79,7 +79,7 @@ public class Map{
      if (level == 2){
        
        // ground pieces
-       blocks.add(new Obstacle("ground", 0, height - 40)); 
+       blocks.add(new Obstacle("ground", 0, height - 40, width, 40)); 
        blocks.add(new Obstacle("ground", 0, height - 120, width - 100, 20)); 
        blocks.add(new Obstacle("ground", width - 80, height - 80, 100, 40)); 
        blocks.add(new Obstacle("ground", 0, height - 160, 100, 40)); 
@@ -93,10 +93,28 @@ public class Map{
        blocks.add(new Obstacle("ground", 120, height - 450, width - 120, 20)); 
        
        // pools
-       //blocks.add(new Obstacle("goo", 
+       blocks.add(new Obstacle("goo", 100, height - 40)); 
+       blocks.add(new Obstacle("water", 300, height - 40)); 
+       blocks.add(new Obstacle("lava", 500, height - 40)); 
+       blocks.add(new Obstacle("water", 150, height - 280, 100, 10)); 
+       blocks.add(new Obstacle("lava", width - 250, height - 280, 100, 10)); 
+       blocks.add(new Obstacle("goo", width - 300, height - 360)); 
+       blocks.add(new Obstacle("water", width - 400, height - 360)); 
        
        doors.add(new Door(width - 20, height - 470, "f")); 
        doors.add(new Door(width - 40, height - 470, "w")); 
+       
+       //platforms
+       Platform p; 
+       p = new Platform(doors.get(1).position.x - 100, height - 470 - 50, 20, 70);
+       platforms.add(p); 
+       p.addState(p.position.x, p.position.y - 70); 
+       switches.add(new Lever(width - 350, height - 380, p)); 
+       
+       p = new Platform(0, height - 220, 100, 20); 
+       platforms.add(p); 
+       p.addState(p.position.x + 100, p.position.y); 
+       switches.add(new Lever(width - 400, height - 140, p)); 
      }
     
      

@@ -6,37 +6,26 @@ public class Obstacle{
   color c; 
   
   public Obstacle(String type, int x, int y){
-    this.type = type;
-    position = new PVector(x, y,0);
-    
-    
-    if (isLava()){
-      w = 35;
-      h = 15;
-      c = LAVA;
-    } else if (isGoo()){
-      w = 35;
-      h = 15;
-      c = GOO;
-    } else if (isWater()){
-      w = 35;
-      h = 15;
-      c = WATER;
-    }
-    else{
-      w = width; 
-      h = 40; 
-      c = GROUND; 
-    }
+    this(type, x, y, 35, 15);
+   
   }
   
   public Obstacle(String type, int x, int y, int w, int h){
-    if (type.equals("ground")){
-      this.type = type; 
-      position = new PVector(x, y);
+    position = new PVector(x, y); 
+    this.type = type; 
+    this.w = w; 
+    this.h = h; 
+    if (isLava()){
+      c = LAVA; 
+    }
+    if (isWater()){
+      c = WATER; 
+    }
+    if (isGoo()){
+      c = GOO;
+    }
+    if (isGround()){
       c = GROUND; 
-      this.w = w; 
-      this.h = h; 
     }
   }
 
