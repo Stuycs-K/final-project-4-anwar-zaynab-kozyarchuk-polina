@@ -22,8 +22,8 @@ class Character{
     } else {
       throw new IllegalArgumentException("illegal argument");
     }
-    h = height/20;
-    w = h / 2;
+    h = 20;
+    w = 10;
     groundY = y;    
     atDoor = false;
     isDead = false;
@@ -40,7 +40,7 @@ class Character{
   
   void setPosition(float x, float y){
     position = new PVector(x,y,0);
-    groundY = position.y; 
+    groundY = y; 
   }
   
   float getX(){
@@ -54,7 +54,7 @@ class Character{
   //using the rightmost edge of the character
   color belowPixel(){
     PVector bottomRight = bottomRight();
-    return get((int) bottomRight.x + w, (int)bottomRight.y + h);
+    return get((int) bottomRight.x, (int)bottomRight.y + 3);
   }
   
   PVector topLeft(){
@@ -135,34 +135,69 @@ class Character{
   void collide(Platform p){
     if (velocity.x > 0){
       if (PVector.dist(bottomRight(), p.bottomLeft()) < 2){
-        velocity.set(0, 0); 
-        acceleration.set(0, 0); 
-        position.set(p.topLeft().x - w - 1, groundY); 
-        jumping = false; 
+        stop();
+        position.set(p.topLeft().x - w - 1, groundY);  
       }
     }
     
     if (velocity.x < 0){
       if (PVector.dist(bottomLeft(), p.bottomRight()) < 2){
-        velocity.set(0, 0); 
-        acceleration.set(0, 0); 
+        stop();
         position.set(p.topRight().x + 1, groundY); 
-        jumping = false; 
+      }
+    }
+  }
+  
+  //kinda like the same as collide but for obstacles instead of platforms
+  void interact(Obstacle o){
+    if (velocity.x > 0){
+      if (PVector.dist(bottomRight(), o.bottomLeft()) < 2){
+        stop(); 
+        position.set(o.bottomLeft().x - w - 1, o.bottomLeft().y - h); 
+      }
+    }
+    
+    if (velocity.x < 0){
+      if (PVector.dist(bottomLeft(), o.bottomRight()) < 2){
+        stop();
+        position.set(o.bottomRight().x + 1, o.bottomRight().y - h); 
+      }
+    }
+    
+    if ((Math.abs(bottomLeft().y - o.topRight().y) < 2)){
+      if (bottomRight().x <= o.bottomRight().x && bottomRight().x >= o.bottomLeft().x){
+        groundY = o.topLeft().y - 1 - h; 
+        position.set(position.x, groundY);  
       }
     }
   }
   
   
-  void move(){    
-    velocity.add(acceleration); 
-    position.add(velocity); 
-    
-    if (position.y > groundY){
+  void move(){  
+    if (position.y > groundY && belowPixel() == GROUND){
       jumping = false; 
       acceleration.set(acceleration.x, 0); 
       velocity.set(velocity.x, 0); 
+      position.set(position.x, groundY);
+    }
+    
+    if (belowPixel() != GROUND && !jumping){
+      acceleration.add(0, 0.05); 
+    }
+    
+    velocity.add(acceleration); 
+    position.add(velocity); 
+    
+    if (position.x < 0 && velocity.x < 0){
+      position.set(0, groundY);
+    }
+    if (topRight().x > width && velocity.x > 0){
+      position.set(width - w - 5, groundY); 
+    }
+    if (position.y > height && velocity.y > 0){
       position.set(position.x, groundY); 
     }
+    
   }
   
   void slowDown(String direction){ 
@@ -201,6 +236,11 @@ class Character{
     } 
   }
   
+  void stop(){
+    velocity.set(0, 0); 
+    acceleration.set(0, 0); 
+    jumping = false; 
+  }
   
   void jump(){
     acceleration.add(0, 0.5); 

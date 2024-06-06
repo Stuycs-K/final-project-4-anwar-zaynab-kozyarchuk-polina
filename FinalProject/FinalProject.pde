@@ -11,16 +11,18 @@ final color WATER = color(173, 213, 247);
 final color uLEVER = color(159, 172, 194); //untoggled lever color
 final color tLEVER = color(247, 194, 17);  //toggled lever color
 final color PLATFORM = color(181, 155, 201);
+final color GROUND = color(163, 123, 47); 
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
 boolean leftW; 
 Map m;
-
+int currentLevel; 
 
 void setup(){
-  size(800, 400); 
-  m = new Map(); 
+  currentLevel = 1; 
+  size(800, 700); 
+  m = new Map(currentLevel); 
   m.setupMap(); 
   
    
@@ -54,7 +56,33 @@ void keyPressed(){
     m.toggleSwitches("f");
   }
   
-  if ((m.lostGame() || m.wonGame())&& key == ' '){
+  if (key == 'y'){
+    if (currentLevel == 2){
+      m.fireboy.setPosition(0, height - 430);
+      m.watergirl.setPosition(0, height - 430);
+    }
+    if (currentLevel == 1){
+      m.fireboy.setPosition(width - 80, m.fireboy.position.y); 
+      m.watergirl.setPosition(width - 90, m.watergirl.position.y); 
+    }
+  }
+  
+  if (m.lostGame() && key == ' '){
+    m.restart(); 
+  }
+  
+  if (m.wonGame() && key == ' '){
+    if (currentLevel == 1){
+      currentLevel++; 
+      m = new Map(currentLevel); 
+      m.setupMap(); 
+    }
+    else{
+      m.restart(); 
+    }
+  }
+  
+  if (m.wonGame() && key == 'b'){
     m.restart(); 
   }
   
