@@ -3,7 +3,7 @@ public class Map{
   public Character watergirl; 
   ArrayList<Door> doors; 
   ArrayList<Obstacle> blocks; 
-  int ycor = height - (height/10);
+  int ycor = height - 40;
   int level; 
   ArrayList<Switch> switches;
   ArrayList<Platform> platforms;
@@ -17,16 +17,10 @@ public class Map{
    public Map(int level){
       if (level == 1){
        this.level = 1;
-       blocks = new ArrayList<Obstacle>(); 
-       blocks.add(new Obstacle("ground", 0, height - 40)); 
-       blocks.add(new Obstacle("goo", width/4, ycor));
-       blocks.add(new Obstacle("water", width/2, ycor)); 
-       blocks.add(new Obstacle("lava", width*3/4, ycor)); 
       }
        
       if (level == 2){
         this.level = 2; 
-        blocks = new ArrayList<Obstacle>(); 
       }
    }
    
@@ -45,38 +39,48 @@ public class Map{
    
    public void showBackground(){
      background(99, 82, 48); 
-     //fill(163, 123, 47); 
-     //noStroke(); 
-     //rect(0, ycor, width, (height/10)); 
-     
+     noStroke(); 
      for (Obstacle o: blocks){
        o.display(); 
      }
    }
    
-   public void setupMap(){
-     showBackground(); 
+   public void setupMap(){ 
      
-     /* code to display characters */
-     int ycor = height - (height/10);
+   /* code to display characters */
      fireboy = new Character(0,0, "f");
      fireboy.setPosition(0, ycor-fireboy.h);
      watergirl = new Character(0,0, "w");
      watergirl.setPosition(fireboy.w + 2, ycor-watergirl.h);
      displayChars();
      
+     blocks = new ArrayList<Obstacle>(); 
      doors = new ArrayList<Door>();
-     doors.add(new Door(width-10, ycor-fireboy.h, "f"));
-     doors.add(new Door(width-10-fireboy.w-8, ycor-fireboy.h, "w"));
-     displayDoors();
-     
      platforms = new ArrayList<Platform>();
-     platforms.add(new Platform(doors.get(1).position.x - 60, doors.get(1).position.y-10));
-     platforms.get(0).addState(platforms.get(0).position.x, platforms.get(0).position.y-30);
-     
      switches = new ArrayList<Switch>();
-     switches.add(new Lever(watergirl.position.x + 60, watergirl.position.y + 3, platforms.get(0)));
-
+     
+     if (level == 1){
+       
+       blocks.add(new Obstacle("ground", 0, height - 40)); 
+       blocks.add(new Obstacle("goo", width/4, ycor));
+       blocks.add(new Obstacle("water", width/2, ycor)); 
+       blocks.add(new Obstacle("lava", width*3/4, ycor)); 
+       
+       doors.add(new Door(width-10, ycor-fireboy.h, "f"));
+       doors.add(new Door(width-10-fireboy.w-8, ycor-fireboy.h, "w"));
+       displayDoors();
+       
+       platforms.add(new Platform(doors.get(1).position.x - 60, doors.get(1).position.y-10));
+       platforms.get(0).addState(platforms.get(0).position.x, platforms.get(0).position.y-30);
+       
+       switches.add(new Lever(watergirl.position.x + 60, watergirl.position.y + 3, platforms.get(0)));
+       
+       showBackground();
+     }
+     
+     if (level == 2){
+       blocks.add(new Obstacle("ground", 0, height - 40)); 
+     }
    }
    
    void toggleSwitches(String type){

@@ -25,8 +25,18 @@ public class Obstacle{
     }
     else{
       w = width; 
-      height = height/10; 
+      h = 40; 
       c = GROUND; 
+    }
+  }
+  
+  public Obstacle(String type, int x, int y, int w, int h){
+    if (type.equals("goo")){
+      this.type = type; 
+      position = new PVector(x, y);
+      c = GROUND; 
+      this.w = w; 
+      this.h = h; 
     }
   }
 
@@ -53,7 +63,7 @@ public class Obstacle{
   public void display(){
     float x =  position.x; 
     float y =  position.y; 
-    fill(c); 
+    fill(c);
     rect(x, y, w, h); 
   }
 

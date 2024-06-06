@@ -11,7 +11,7 @@ final color WATER = color(173, 213, 247);
 final color uLEVER = color(159, 172, 194); //untoggled lever color
 final color tLEVER = color(247, 194, 17);  //toggled lever color
 final color PLATFORM = color(181, 155, 201);
-final color GROUND = color(163, 123, 470); 
+final color GROUND = color(163, 123, 47); 
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
@@ -20,7 +20,7 @@ Map m;
 
 
 void setup(){
-  size(800, 800); 
+  size(800, 700); 
   m = new Map(); 
   m.setupMap(); 
   
