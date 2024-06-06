@@ -60,7 +60,7 @@ public class Map{
      
      if (level == 1){
        
-       blocks.add(new Obstacle("ground", 0, height - 40)); 
+       blocks.add(new Obstacle("ground", 0, height - 40, width, 40)); 
        blocks.add(new Obstacle("goo", width/4, ycor));
        blocks.add(new Obstacle("water", width/2, ycor)); 
        blocks.add(new Obstacle("lava", width*3/4, ycor)); 
@@ -69,7 +69,7 @@ public class Map{
        doors.add(new Door(width-10-fireboy.w-8, ycor-fireboy.h, "w"));
        displayDoors();
        
-       platforms.add(new Platform(doors.get(1).position.x - 60, doors.get(1).position.y-10));
+       platforms.add(new Platform(doors.get(1).position.x - 60, doors.get(1).position.y-60, 10, 80));
        platforms.get(0).addState(platforms.get(0).position.x, platforms.get(0).position.y-30);
        
        switches.add(new Lever(watergirl.position.x + 60, watergirl.position.y + 3, platforms.get(0)));
@@ -180,7 +180,12 @@ public class Map{
      if (fireboy.atDoor && watergirl.atDoor){
        delay(500);
        background(color(0,0,0));
-       text("YOU WON!!!", width- (width/2), height - (height/2));  
+       textAlign(CENTER); 
+       text("YOU WON!!!", width- (width/2), height - (height*2/3));  
+       if (level == 1){
+         text("press spacebar to go to next level", width - width/2, height - height/3); 
+       }
+       textAlign(LEFT); 
        return true;
      } else {
        return false;

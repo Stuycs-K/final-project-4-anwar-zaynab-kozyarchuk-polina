@@ -17,11 +17,12 @@ boolean rightW;
 boolean leftF; 
 boolean leftW; 
 Map m;
-
+int currentLevel; 
 
 void setup(){
+  currentLevel = 1; 
   size(800, 700); 
-  m = new Map(2); 
+  m = new Map(currentLevel); 
   m.setupMap(); 
   
    
@@ -56,12 +57,27 @@ void keyPressed(){
   }
   
   if (key == 'y'){
-    m.fireboy.setPosition(0, height - 430);
-    m.watergirl.setPosition(0, height - 430);
-    
+    if (currentLevel == 2){
+      m.fireboy.setPosition(0, height - 430);
+      m.watergirl.setPosition(0, height - 430);
+    }
+    if (currentLevel == 1){
+      m.fireboy.setPosition(width - 80, m.fireboy.position.y); 
+      m.watergirl.setPosition(width - 90, m.watergirl.position.y); 
+    }
   }
-  if ((m.lostGame() || m.wonGame())&& key == ' '){
+  if (m.lostGame() && key == ' '){
     m.restart(); 
+  }
+  if (m.wonGame() && key == ' '){
+    if (currentLevel == 1){
+      currentLevel++; 
+      m = new Map(currentLevel); 
+      m.setupMap(); 
+    }
+    else{
+      m.restart(); 
+    }
   }
 }
 
