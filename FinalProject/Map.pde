@@ -174,6 +174,7 @@ public class Map{
      if (fireboy.isDead || watergirl.isDead){
        background(color(0,0,0));
        textAlign(CENTER); 
+       fill(255); 
        text("AHHAHAHHAHAH LOSER", width/2, height/3); 
        text("press spacebar to restart", width/2, height*2/3); 
        return true;
@@ -186,12 +187,14 @@ public class Map{
      fireboy.reachGoal();
      watergirl.reachGoal();
      if (fireboy.atDoor && watergirl.atDoor){
-       delay(500);
+       //delay(500);
        background(color(0,0,0));
        textAlign(CENTER); 
-       text("YOU WON!!!", width- (width/2), height - (height*2/3));  
+       fill(255); 
+       text("YOU WON!!!", (width/2), height - (height*3/4));  
+       text("rank: D", width/2, height/2); 
        if (level == 1){
-         text("press spacebar to go to next level", width - width/2, height - height/3); 
+         text("press spacebar to go to next level, b to repeat level", width - width/2, height - height/4); 
        }
        textAlign(LEFT); 
        return true;

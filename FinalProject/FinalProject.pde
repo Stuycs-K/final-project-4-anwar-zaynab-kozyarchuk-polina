@@ -66,9 +66,11 @@ void keyPressed(){
       m.watergirl.setPosition(width - 90, m.watergirl.position.y); 
     }
   }
+  
   if (m.lostGame() && key == ' '){
     m.restart(); 
   }
+  
   if (m.wonGame() && key == ' '){
     if (currentLevel == 1){
       currentLevel++; 
@@ -78,6 +80,10 @@ void keyPressed(){
     else{
       m.restart(); 
     }
+  }
+  
+  if (m.wonGame() && key == 'b'){
+    m.restart(); 
   }
 }
 
