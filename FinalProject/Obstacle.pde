@@ -12,15 +12,15 @@ public class Obstacle{
     
     if (isLava()){
       w = 35;
-      h = 20;
+      h = 15;
       c = LAVA;
     } else if (isGoo()){
       w = 35;
-      h = 20;
+      h = 15;
       c = GOO;
     } else if (isWater()){
       w = 35;
-      h = 20;
+      h = 15;
       c = WATER;
     }
     else{

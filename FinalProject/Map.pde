@@ -46,18 +46,17 @@ public class Map{
    }
    
    public void setupMap(){ 
+     blocks = new ArrayList<Obstacle>(); 
+     doors = new ArrayList<Door>();
+     platforms = new ArrayList<Platform>();
+     switches = new ArrayList<Switch>();
      
-   /* code to display characters */
+     /* code to display characters */
      fireboy = new Character(0,0, "f");
      fireboy.setPosition(0, ycor-fireboy.h);
      watergirl = new Character(0,0, "w");
      watergirl.setPosition(fireboy.w + 2, ycor-watergirl.h);
      displayChars();
-     
-     blocks = new ArrayList<Obstacle>(); 
-     doors = new ArrayList<Door>();
-     platforms = new ArrayList<Platform>();
-     switches = new ArrayList<Switch>();
      
      if (level == 1){
        
@@ -78,18 +77,28 @@ public class Map{
      }
      
      if (level == 2){
-       //fireboy.setPosition(600, fireboy.getY()); 
-       //watergirl.setPosition(620, watergirl.getY()); 
        
-       // first level
+       // ground pieces
        blocks.add(new Obstacle("ground", 0, height - 40)); 
+       blocks.add(new Obstacle("ground", 0, height - 120, width - 100, 20)); 
+       blocks.add(new Obstacle("ground", width - 80, height - 80, 100, 40)); 
+       blocks.add(new Obstacle("ground", 0, height - 160, 100, 40)); 
+       blocks.add(new Obstacle("ground", 100, height - 220, width - 100, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 280, 300, 20)); 
+       blocks.add(new Obstacle("ground", 500, height - 280, 300, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 320, 100, 40)); 
+       blocks.add(new Obstacle("ground", width - 100, height - 320, 100, 40)); 
+       blocks.add(new Obstacle("ground", 120, height - 360, 530, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 400, 100, 20)); 
+       blocks.add(new Obstacle("ground", 120, height - 450, width - 120, 20)); 
        
-       // second level
-       blocks.add(new Obstacle("ground", 0, height - 180, width - 150, 20)); 
+       // pools
+       //blocks.add(new Obstacle("goo", 
        
-       // step up
-       blocks.add(new Obstacle("ground", width - 500, height - 80, 100, 40)); 
+       doors.add(new Door(width - 20, height - 470, "f")); 
+       doors.add(new Door(width - 40, height - 470, "w")); 
      }
+    
      
      showBackground(); 
    }
@@ -121,15 +130,16 @@ public class Map{
      showBackground(); 
      displayChars(); 
      displayDoors(); 
-     displaySwitches(); 
-     printTutorial(); 
+     displaySwitches();
+     if (level == 1)
+       printTutorial(); 
    }
    
-   void moveChars(){
-     platformCollisions(); 
-     obstacleInteractions(); 
+   void moveChars(){ 
      fireboy.move(); 
      watergirl.move(); 
+     platformCollisions(); 
+     obstacleInteractions();
    }
    
    boolean lostGame(){

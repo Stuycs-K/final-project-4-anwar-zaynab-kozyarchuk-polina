@@ -40,7 +40,7 @@ class Character{
   
   void setPosition(float x, float y){
     position = new PVector(x,y,0);
-    groundY = position.y; 
+    groundY = y; 
   }
   
   float getX(){
@@ -54,7 +54,7 @@ class Character{
   //using the rightmost edge of the character
   color belowPixel(){
     PVector bottomRight = bottomRight();
-    return get((int) bottomRight.x + w, (int)bottomRight.y + h);
+    return get((int) bottomRight.x, (int)bottomRight.y + 3);
   }
   
   PVector topLeft(){
@@ -164,22 +164,40 @@ class Character{
       }
     }
     
-    if (PVector.dist(bottomRight(), o.topLeft()) < 2){
-      position.set(position.x, o.topLeft().y - 1 - h); 
+    if ((Math.abs(bottomLeft().y - o.topRight().y) < 2)){
+      if (bottomRight().x <= o.bottomRight().x && bottomRight().x >= o.bottomLeft().x){
+        groundY = o.topLeft().y - 1 - h; 
+        position.set(position.x, groundY);  
+      }
     }
   }
   
   
-  void move(){    
-    velocity.add(acceleration); 
-    position.add(velocity); 
-    
-    if (position.y > groundY){
+  void move(){  
+    if (position.y > groundY && belowPixel() == GROUND){
       jumping = false; 
       acceleration.set(acceleration.x, 0); 
       velocity.set(velocity.x, 0); 
+      position.set(position.x, groundY);
+    }
+    
+    if (belowPixel() != GROUND && !jumping){
+      acceleration.add(0, 0.05); 
+    }
+    
+    velocity.add(acceleration); 
+    position.add(velocity); 
+    
+    if (position.x < 0 && velocity.x < 0){
+      position.set(0, groundY);
+    }
+    if (topRight().x > width && velocity.x > 0){
+      position.set(width - w - 5, groundY); 
+    }
+    if (position.y > height && velocity.y > 0){
       position.set(position.x, groundY); 
     }
+    
   }
   
   void slowDown(String direction){ 

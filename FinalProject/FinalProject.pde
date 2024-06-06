@@ -55,6 +55,11 @@ void keyPressed(){
     m.toggleSwitches("f");
   }
   
+  if (key == 'y'){
+    m.fireboy.setPosition(0, height - 430);
+    m.watergirl.setPosition(0, height - 430);
+    
+  }
   if ((m.lostGame() || m.wonGame())&& key == ' '){
     m.restart(); 
   }
