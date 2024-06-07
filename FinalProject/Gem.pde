@@ -6,4 +6,8 @@ public class Gem{
     position = new PVector(x, y);
     type = _type;
   }
+  
+  display(){
+    
+  }
 }
