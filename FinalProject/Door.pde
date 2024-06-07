@@ -8,8 +8,8 @@ class Door{
   Door(int x, int y, String _type){
     position = new PVector(x,y,0);
     type = _type;
-    h = height/20;
-    w = h / 2;    
+    h = 20;
+    w = 10;    
   }
   
   boolean isFire(){
