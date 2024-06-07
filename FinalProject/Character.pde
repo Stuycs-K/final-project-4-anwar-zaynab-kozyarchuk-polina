@@ -99,18 +99,18 @@ class Character{
   }
   
   void die(){
-    if (inProximity(GOO,1)){
+    if (inProximity(GOO,2)){
       isDead = true;
       setPosition(-10,-10);
     }
     if (isFire()){
-      if (inProximity(WATER,1)){
+      if (inProximity(WATER,2)){
         isDead = true;
         setPosition(-10,-10);
       }
     }
     else {
-      if (inProximity(LAVA,1)){
+      if (inProximity(LAVA,2)){
         isDead = true;
         setPosition(-10,-10);
       }
@@ -134,7 +134,8 @@ class Character{
   
   void collide(Platform p){
     if (velocity.x > 0){
-      if (PVector.dist(bottomRight(), p.bottomLeft()) < 2){
+      if (Math.abs(bottomRight().x - p.bottomLeft().x) < 3 &&
+          (bottomRight().y <= p.bottomLeft().y && topRight().y >= p.topLeft().y)){
         stop();
         position.set(p.topLeft().x - w - 1, groundY);  
       }
@@ -181,7 +182,7 @@ class Character{
       position.set(position.x, groundY);
     }
     
-    if (belowPixel() != GROUND && !jumping){
+    if (belowPixel() == BACKGROUND && !jumping){
       acceleration.add(0, 0.05); 
     }
     
