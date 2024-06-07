@@ -86,11 +86,7 @@ void keyPressed(){
     m.restart(); 
   }
   
-  if (key == 'y'){
-    m.fireboy.setPosition(width - 40, m.fireboy.getY()); 
-    m.watergirl.setPosition(width - 40, m.watergirl.getY()); 
-
-  }
+  
 }
 
 void keyReleased(){
