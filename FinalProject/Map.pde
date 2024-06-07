@@ -39,7 +39,7 @@ public class Map{
    }
    
    public void showBackground(){
-     background(99, 82, 48); 
+     background(BACKGROUND); 
      noStroke(); 
      for (Obstacle o: blocks){
        o.display(); 
@@ -82,17 +82,17 @@ public class Map{
        
        // ground pieces
        blocks.add(new Obstacle("ground", 0, height - 40, width, 40)); 
-       blocks.add(new Obstacle("ground", 0, height - 120, width - 100, 20)); 
-       blocks.add(new Obstacle("ground", width - 80, height - 80, 100, 40)); 
-       blocks.add(new Obstacle("ground", 0, height - 160, 100, 40)); 
-       blocks.add(new Obstacle("ground", 100, height - 220, width - 100, 20)); 
-       blocks.add(new Obstacle("ground", 0, height - 280, 300, 20)); 
-       blocks.add(new Obstacle("ground", 500, height - 280, 300, 20)); 
-       blocks.add(new Obstacle("ground", 0, height - 320, 100, 40)); 
-       blocks.add(new Obstacle("ground", width - 100, height - 320, 100, 40)); 
-       blocks.add(new Obstacle("ground", 120, height - 360, 530, 20)); 
-       blocks.add(new Obstacle("ground", 0, height - 400, 100, 20)); 
-       blocks.add(new Obstacle("ground", 120, height - 450, width - 120, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 150, width - 100, 20)); 
+       blocks.add(new Obstacle("ground", width - 80, height - 90, 100, 50)); 
+       blocks.add(new Obstacle("ground", 0, height - 190, 100, 40)); 
+       blocks.add(new Obstacle("ground", 100, height - 230, width - 100, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 290, 300, 20)); 
+       blocks.add(new Obstacle("ground", 500, height - 290, 300, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 330, 100, 40)); 
+       blocks.add(new Obstacle("ground", width - 100, height - 330, 100, 40)); 
+       blocks.add(new Obstacle("ground", 120, height - 370, 530, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 410, 100, 20)); 
+       blocks.add(new Obstacle("ground", 120, height - 460, width - 120, 20)); 
        
        // pools
        blocks.add(new Obstacle("goo", 100, height - 40)); 
@@ -102,6 +102,7 @@ public class Map{
        blocks.add(new Obstacle("lava", width - 250, height - 280, 100, 10)); 
        blocks.add(new Obstacle("goo", width - 300, height - 360)); 
        blocks.add(new Obstacle("water", width - 400, height - 360)); 
+       
        
        doors.add(new Door(width - 20, height - 470, "f")); 
        doors.add(new Door(width - 40, height - 470, "w")); 
@@ -159,6 +160,16 @@ public class Map{
      if (frameCount % 100 == 0){
        timer++;
      }
+     
+     
+     for (int i = 0; i < blocks.size(); i++){
+         PFont font; 
+         font = loadFont("DejaVuSerif-48.vlw"); 
+         textFont(font, 15); 
+         fill(0); 
+         textAlign(LEFT); 
+         text(i, blocks.get(i).position.x, blocks.get(i).position.y); 
+       }
    }
    
    void moveChars(){ 

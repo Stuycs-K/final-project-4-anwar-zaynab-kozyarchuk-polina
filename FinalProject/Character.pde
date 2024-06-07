@@ -171,6 +171,13 @@ class Character{
         position.set(position.x, groundY);  
       }
     }
+    
+    if (velocity.y < 0){
+      if (Math.abs(topRight().y - o.bottomRight().y) < w &&
+          (topLeft().x >= o.bottomLeft().x && topRight().x <= o.bottomRight().x)){
+            position.set(position.x, o.bottomLeft().y - 1); 
+          }
+    }
   }
   
   
