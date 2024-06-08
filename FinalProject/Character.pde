@@ -52,9 +52,12 @@ class Character{
   }
   
   //using the rightmost edge of the character
-  color belowPixel(){
-    PVector bottomRight = bottomRight();
-    return get((int) bottomRight.x, (int)bottomRight.y + 3);
+  color belowPixelRight(){
+    return get((int)bottomRight().x, (int)bottomRight().y + 1);
+  }
+  
+  color belowPixelLeft(){
+    return get((int)bottomLeft().x, (int)bottomLeft().y + 1); 
   }
   
   PVector topLeft(){
@@ -99,18 +102,18 @@ class Character{
   }
   
   void die(){
-    if (inProximity(GOO,1)){
+    if (inProximity(GOO,2)){
       isDead = true;
       setPosition(-10,-10);
     }
     if (isFire()){
-      if (inProximity(WATER,1)){
+      if (inProximity(WATER,2)){
         isDead = true;
         setPosition(-10,-10);
       }
     }
     else {
-      if (inProximity(LAVA,1)){
+      if (inProximity(LAVA,2)){
         isDead = true;
         setPosition(-10,-10);
       }
@@ -127,6 +130,7 @@ class Character{
       }
       fill(c);
       rect(position.x, position.y, w, h);
+      //image(wImg, position.x, position.y, w, h); 
     } 
         
   }
@@ -134,7 +138,8 @@ class Character{
   
   void collide(Platform p){
     if (velocity.x > 0){
-      if (PVector.dist(bottomRight(), p.bottomLeft()) < 2){
+      if (Math.abs(bottomRight().x - p.bottomLeft().x) < 3 &&
+          (bottomRight().y <= p.bottomLeft().y && topRight().y >= p.topLeft().y)){
         stop();
         position.set(p.topLeft().x - w - 1, groundY);  
       }
@@ -164,26 +169,42 @@ class Character{
       }
     }
     
-    if ((Math.abs(bottomLeft().y - o.topRight().y) < 2)){
-      if (bottomRight().x <= o.bottomRight().x && bottomRight().x >= o.bottomLeft().x){
-        groundY = o.topLeft().y - 1 - h; 
-        position.set(position.x, groundY);  
+    if (velocity.y > 0){
+      if ((bottomRight().y > o.topRight().y && bottomRight().y < o.bottomRight().y) &&
+          (bottomRight().x <= o.bottomRight().x && bottomRight().x >= o.bottomLeft().x)){
+          jumping = false; 
+          acceleration.set(acceleration.x, 0); 
+          velocity.set(velocity.x, 0); 
+          groundY = o.topLeft().y - h; 
+          position.set(position.x, groundY);  
       }
+    }
+    
+    if (velocity.y < 0){
+      if (topRight().y < o.bottomRight().y && topRight().y > o.topRight().y &&
+          (topLeft().x >= o.bottomLeft().x && topRight().x <= o.bottomRight().x)){
+            jumping = false; 
+            position.set(position.x, o.bottomLeft().y - 1); 
+          }
+    }
+    
+    // fixing the bug where you can get stuck into the ground
+    if (topLeft().x >= o.topLeft().x && 
+        topRight().x <= o.topRight().x && 
+        topLeft().y >= o.topLeft().y && 
+        bottomLeft().y <= o.bottomLeft().y){
+          position.set(position.x, o.topLeft().y - h); 
     }
   }
   
   
   void move(){  
-    if (position.y > groundY && belowPixel() == GROUND){
-      jumping = false; 
-      acceleration.set(acceleration.x, 0); 
-      velocity.set(velocity.x, 0); 
-      position.set(position.x, groundY);
+    
+    if (belowPixelRight() == BACKGROUND && belowPixelLeft() == BACKGROUND && !jumping){
+      acceleration.add(0, 0.05);
+      groundY = position.y; 
     }
     
-    if (belowPixel() != GROUND && !jumping){
-      acceleration.add(0, 0.05); 
-    }
     
     velocity.add(acceleration); 
     position.add(velocity); 

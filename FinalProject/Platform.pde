@@ -1,11 +1,7 @@
-class Platform{
-
-  PVector position;
+class Platform extends Obstacle{
   int state;
   int stateMax;
   ArrayList<PVector> states;
-  int w;
-  int h;
   
   Platform(){
     this(0,0);
@@ -14,13 +10,11 @@ class Platform{
     this(x,y,10,30);
   }
   Platform(float x, float y, int _w, int _h){
-    position = new PVector(x,y,0);
+    super("platform", x, y, _w, _h); 
     state = 0;
     stateMax = 0;
     states = new ArrayList<PVector>();
     states.add(position);
-    w = _w;
-    h = _h;
   }
   
   void addState(float x, float y){

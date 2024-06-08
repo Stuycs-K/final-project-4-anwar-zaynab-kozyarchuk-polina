@@ -12,19 +12,23 @@ final color uLEVER = color(159, 172, 194); //untoggled lever color
 final color tLEVER = color(247, 194, 17);  //toggled lever color
 final color PLATFORM = color(181, 155, 201);
 final color GROUND = color(163, 123, 47); 
+final color BACKGROUND = color(99, 82, 48); 
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
 boolean leftW; 
 Map m;
 int currentLevel; 
+PImage wImg; 
+PImage fImg; 
 
 void setup(){
-  currentLevel = 1; 
+  currentLevel = 2; 
   size(800, 700); 
   m = new Map(currentLevel); 
   m.setupMap(); 
-  
+  wImg = loadImage("watergirl.jpg"); 
+  fImg = loadImage("fireboy.jpg"); 
    
 }
 
@@ -99,7 +103,7 @@ void keyReleased(){
     leftW = false; 
 }
 
-void draw(){
+void draw(){ 
   
   if (!m.wonGame() && !m.lostGame()){
     if(rightF && !leftF){
@@ -130,6 +134,7 @@ void draw(){
     m.moveChars(); 
     m.display(); 
   }
-
+  
+   
 
 }

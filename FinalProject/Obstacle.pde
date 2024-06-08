@@ -5,12 +5,12 @@ public class Obstacle{
   int h; 
   color c; 
   
-  public Obstacle(String type, int x, int y){
+  public Obstacle(String type, float x, float y){
     this(type, x, y, 35, 15);
    
   }
   
-  public Obstacle(String type, int x, int y, int w, int h){
+  public Obstacle(String type, float x, float y, int w, int h){
     position = new PVector(x, y); 
     this.type = type; 
     this.w = w; 
@@ -26,6 +26,9 @@ public class Obstacle{
     }
     if (isGround()){
       c = GROUND; 
+    }
+    if (isPlatform()){
+      c = PLATFORM; 
     }
   }
 
@@ -43,6 +46,10 @@ public class Obstacle{
   
   public boolean isGround(){
     return type.equals("ground"); 
+  }
+  
+  public boolean isPlatform(){
+    return type.equals("platform"); 
   }
   
   public PVector getLocation(){

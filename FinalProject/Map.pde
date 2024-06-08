@@ -7,15 +7,16 @@ public class Map{
   int level; 
   ArrayList<Switch> switches;
   ArrayList<Platform> platforms;
- //ArrayList<Gem> gems; 
- //int collectedGems; 
- int timer; 
+  ArrayList<Gem> gems; 
+  int collectedGems; 
+  int timer; 
    
    public Map(){
      this(1); 
    }
    
    public Map(int level){
+     collectedGems = 0; 
       if (level == 1){
        this.level = 1;
       }
@@ -39,7 +40,7 @@ public class Map{
    }
    
    public void showBackground(){
-     background(99, 82, 48); 
+     background(BACKGROUND); 
      noStroke(); 
      for (Obstacle o: blocks){
        o.display(); 
@@ -52,6 +53,7 @@ public class Map{
      doors = new ArrayList<Door>();
      platforms = new ArrayList<Platform>();
      switches = new ArrayList<Switch>();
+     gems = new ArrayList<Gem>(); 
      
      /* code to display characters */
      fireboy = new Character(0,0, "f");
@@ -82,41 +84,42 @@ public class Map{
        
        // ground pieces
        blocks.add(new Obstacle("ground", 0, height - 40, width, 40)); 
-       blocks.add(new Obstacle("ground", 0, height - 120, width - 100, 20)); 
-       blocks.add(new Obstacle("ground", width - 80, height - 80, 100, 40)); 
-       blocks.add(new Obstacle("ground", 0, height - 160, 100, 40)); 
-       blocks.add(new Obstacle("ground", 100, height - 220, width - 100, 20)); 
-       blocks.add(new Obstacle("ground", 0, height - 280, 300, 20)); 
-       blocks.add(new Obstacle("ground", 500, height - 280, 300, 20)); 
-       blocks.add(new Obstacle("ground", 0, height - 320, 100, 40)); 
-       blocks.add(new Obstacle("ground", width - 100, height - 320, 100, 40)); 
-       blocks.add(new Obstacle("ground", 120, height - 360, 530, 20)); 
-       blocks.add(new Obstacle("ground", 0, height - 400, 100, 20)); 
-       blocks.add(new Obstacle("ground", 120, height - 450, width - 120, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 150, width - 100, 20)); 
+       blocks.add(new Obstacle("ground", width - 80, height - 90, 100, 50)); 
+       blocks.add(new Obstacle("ground", 0, height - 190, 100, 40)); 
+       blocks.add(new Obstacle("ground", 120, height - 250, width - 120, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 310, 300, 20)); 
+       blocks.add(new Obstacle("ground", 500, height - 310, 300, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 350, 100, 40)); 
+       blocks.add(new Obstacle("ground", width - 100, height - 350, 100, 40)); 
+       blocks.add(new Obstacle("ground", 130, height - 380, 530, 20)); 
+       blocks.add(new Obstacle("ground", 0, height - 420, 90, 20)); 
+       blocks.add(new Obstacle("ground", 120, height - 480, width - 120, 20)); 
        
        // pools
        blocks.add(new Obstacle("goo", 100, height - 40)); 
        blocks.add(new Obstacle("water", 300, height - 40)); 
        blocks.add(new Obstacle("lava", 500, height - 40)); 
-       blocks.add(new Obstacle("water", 150, height - 280, 100, 10)); 
-       blocks.add(new Obstacle("lava", width - 250, height - 280, 100, 10)); 
-       blocks.add(new Obstacle("goo", width - 300, height - 360)); 
-       blocks.add(new Obstacle("water", width - 400, height - 360)); 
+       blocks.add(new Obstacle("water", 150, height - 310, 100, 10)); 
+       blocks.add(new Obstacle("lava", width - 250, height - 310, 100, 10)); 
+       blocks.add(new Obstacle("goo", width - 300, height - 380)); 
+       blocks.add(new Obstacle("water", width - 400, height - 380)); 
        
-       doors.add(new Door(width - 20, height - 470, "f")); 
-       doors.add(new Door(width - 40, height - 470, "w")); 
+       
+       doors.add(new Door(width - 20, height - 500, "f")); 
+       doors.add(new Door(width - 40, height - 500, "w")); 
        
        //platforms
        Platform p; 
-       p = new Platform(doors.get(1).position.x - 100, height - 470 - 50, 20, 70);
+       p = new Platform(doors.get(1).position.x - 100, height - 480 - 70, 20, 70);
        platforms.add(p); 
        p.addState(p.position.x, p.position.y - 70); 
-       switches.add(new Lever(width - 350, height - 380, p)); 
+       switches.add(new Lever(width - 350, height - 400, p)); 
        
-       p = new Platform(0, height - 220, 100, 20); 
+       p = new Platform(0, height - 250, 120, 20); 
        platforms.add(p); 
        p.addState(p.position.x + 100, p.position.y); 
-       switches.add(new Lever(width - 400, height - 140, p)); 
+       switches.add(new Lever(width - 400, height - 170, p)); 
      }
     
      
@@ -159,6 +162,16 @@ public class Map{
      if (frameCount % 100 == 0){
        timer++;
      }
+     
+     // code to display the number of each block, useful for debugging
+     //for (int i = 0; i < blocks.size(); i++){
+     //    PFont font; 
+     //    font = loadFont("DejaVuSerif-48.vlw"); 
+     //    textFont(font, 15); 
+     //    fill(0); 
+     //    textAlign(LEFT); 
+     //    text(i, blocks.get(i).position.x, blocks.get(i).position.y); 
+     //  }
    }
    
    void moveChars(){ 
@@ -192,7 +205,8 @@ public class Map{
        textAlign(CENTER); 
        fill(255); 
        text("YOU WON!!!", (width/2), height - (height*3/4));  
-       text("rank: D", width/2, height/2); 
+       String rank = "rank: " + calculateRank(); 
+       text(rank, width/2, height/2); 
        if (level == 1){
          text("press spacebar to go to next level, b to repeat level", width - width/2, height - height/4); 
        }
@@ -239,6 +253,26 @@ public class Map{
      textFont(font, 30); 
      text(s, width/2, 40); 
      textAlign(LEFT); 
+   }
+   
+   String calculateRank(){
+     if (timer < 120 && collectedGems == gems.size()){
+       return "A"; 
+     }
+     else if (timer < 300){
+       if (collectedGems == gems.size()){
+         return "B"; 
+       }else{
+         return "C"; 
+       }
+     }else{
+       if (collectedGems >= gems.size() - 3){
+         return "D"; 
+       }else{
+         return "F"; 
+       }
+     }
+
    }
    
 }
