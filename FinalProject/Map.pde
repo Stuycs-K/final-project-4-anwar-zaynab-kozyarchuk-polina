@@ -7,15 +7,16 @@ public class Map{
   int level; 
   ArrayList<Switch> switches;
   ArrayList<Platform> platforms;
- //ArrayList<Gem> gems; 
- //int collectedGems; 
- int timer; 
+  ArrayList<Gem> gems; 
+  int collectedGems; 
+  int timer; 
    
    public Map(){
      this(1); 
    }
    
    public Map(int level){
+     collectedGems = 0; 
       if (level == 1){
        this.level = 1;
       }
@@ -52,6 +53,7 @@ public class Map{
      doors = new ArrayList<Door>();
      platforms = new ArrayList<Platform>();
      switches = new ArrayList<Switch>();
+     gems = new ArrayList<Gem>(); 
      
      /* code to display characters */
      fireboy = new Character(0,0, "f");
@@ -90,9 +92,9 @@ public class Map{
        blocks.add(new Obstacle("ground", 500, height - 310, 300, 20)); 
        blocks.add(new Obstacle("ground", 0, height - 350, 100, 40)); 
        blocks.add(new Obstacle("ground", width - 100, height - 350, 100, 40)); 
-       blocks.add(new Obstacle("ground", 130, height - 380, 520, 20)); 
+       blocks.add(new Obstacle("ground", 130, height - 380, 530, 20)); 
        blocks.add(new Obstacle("ground", 0, height - 420, 90, 20)); 
-       blocks.add(new Obstacle("ground", 120, height - 470, width - 120, 20)); 
+       blocks.add(new Obstacle("ground", 120, height - 480, width - 120, 20)); 
        
        // pools
        blocks.add(new Obstacle("goo", 100, height - 40)); 
@@ -104,12 +106,12 @@ public class Map{
        blocks.add(new Obstacle("water", width - 400, height - 380)); 
        
        
-       doors.add(new Door(width - 20, height - 490, "f")); 
-       doors.add(new Door(width - 40, height - 490, "w")); 
+       doors.add(new Door(width - 20, height - 500, "f")); 
+       doors.add(new Door(width - 40, height - 500, "w")); 
        
        //platforms
        Platform p; 
-       p = new Platform(doors.get(1).position.x - 100, height - 470 - 70, 20, 70);
+       p = new Platform(doors.get(1).position.x - 100, height - 480 - 70, 20, 70);
        platforms.add(p); 
        p.addState(p.position.x, p.position.y - 70); 
        switches.add(new Lever(width - 350, height - 400, p)); 
@@ -161,15 +163,15 @@ public class Map{
        timer++;
      }
      
-     
-     for (int i = 0; i < blocks.size(); i++){
-         PFont font; 
-         font = loadFont("DejaVuSerif-48.vlw"); 
-         textFont(font, 15); 
-         fill(0); 
-         textAlign(LEFT); 
-         text(i, blocks.get(i).position.x, blocks.get(i).position.y); 
-       }
+     // code to display the number of each block, useful for debugging
+     //for (int i = 0; i < blocks.size(); i++){
+     //    PFont font; 
+     //    font = loadFont("DejaVuSerif-48.vlw"); 
+     //    textFont(font, 15); 
+     //    fill(0); 
+     //    textAlign(LEFT); 
+     //    text(i, blocks.get(i).position.x, blocks.get(i).position.y); 
+     //  }
    }
    
    void moveChars(){ 
@@ -203,7 +205,8 @@ public class Map{
        textAlign(CENTER); 
        fill(255); 
        text("YOU WON!!!", (width/2), height - (height*3/4));  
-       text("rank: D", width/2, height/2); 
+       String rank = "rank: " + calculateRank(); 
+       text(rank, width/2, height/2); 
        if (level == 1){
          text("press spacebar to go to next level, b to repeat level", width - width/2, height - height/4); 
        }
@@ -250,6 +253,26 @@ public class Map{
      textFont(font, 30); 
      text(s, width/2, 40); 
      textAlign(LEFT); 
+   }
+   
+   String calculateRank(){
+     if (timer < 120 && collectedGems == gems.size()){
+       return "A"; 
+     }
+     else if (timer < 300){
+       if (collectedGems == gems.size()){
+         return "B"; 
+       }else{
+         return "C"; 
+       }
+     }else{
+       if (collectedGems >= gems.size() - 3){
+         return "D"; 
+       }else{
+         return "F"; 
+       }
+     }
+
    }
    
 }

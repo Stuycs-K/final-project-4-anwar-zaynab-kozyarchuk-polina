@@ -52,9 +52,12 @@ class Character{
   }
   
   //using the rightmost edge of the character
-  color belowPixel(){
-    PVector bottomRight = bottomRight();
-    return get((int) bottomRight.x, (int)bottomRight.y + 3);
+  color belowPixelRight(){
+    return get((int)bottomRight().x, (int)bottomRight().y + 1);
+  }
+  
+  color belowPixelLeft(){
+    return get((int)bottomLeft().x, (int)bottomLeft().y + 1); 
   }
   
   PVector topLeft(){
@@ -127,6 +130,7 @@ class Character{
       }
       fill(c);
       rect(position.x, position.y, w, h);
+      //image(wImg, position.x, position.y, w, h); 
     } 
         
   }
@@ -196,7 +200,7 @@ class Character{
   
   void move(){  
     
-    if (belowPixel() == BACKGROUND && !jumping){
+    if (belowPixelRight() == BACKGROUND && belowPixelLeft() == BACKGROUND && !jumping){
       acceleration.add(0, 0.05);
       groundY = position.y; 
     }

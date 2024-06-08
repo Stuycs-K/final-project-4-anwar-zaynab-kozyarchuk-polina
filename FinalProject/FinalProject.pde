@@ -19,13 +19,16 @@ boolean leftF;
 boolean leftW; 
 Map m;
 int currentLevel; 
+PImage wImg; 
+PImage fImg; 
 
 void setup(){
   currentLevel = 2; 
   size(800, 700); 
   m = new Map(currentLevel); 
   m.setupMap(); 
-  
+  wImg = loadImage("watergirl.jpg"); 
+  fImg = loadImage("fireboy.jpg"); 
    
 }
 
@@ -100,7 +103,7 @@ void keyReleased(){
     leftW = false; 
 }
 
-void draw(){
+void draw(){ 
   
   if (!m.wonGame() && !m.lostGame()){
     if(rightF && !leftF){
@@ -131,6 +134,7 @@ void draw(){
     m.moveChars(); 
     m.display(); 
   }
-
+  
+   
 
 }
