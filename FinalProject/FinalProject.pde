@@ -12,6 +12,7 @@ final color uLEVER = color(159, 172, 194); //untoggled lever color
 final color tLEVER = color(247, 194, 17);  //toggled lever color
 final color PLATFORM = color(181, 155, 201);
 final color GROUND = color(163, 123, 47); 
+final color BACKGROUND = color(99, 82, 48); 
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
