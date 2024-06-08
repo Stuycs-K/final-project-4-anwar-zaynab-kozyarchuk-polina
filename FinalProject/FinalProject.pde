@@ -21,7 +21,7 @@ Map m;
 int currentLevel; 
 
 void setup(){
-  currentLevel = 1; 
+  currentLevel = 2; 
   size(800, 700); 
   m = new Map(currentLevel); 
   m.setupMap(); 

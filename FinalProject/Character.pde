@@ -165,33 +165,42 @@ class Character{
       }
     }
     
-    if ((Math.abs(bottomLeft().y - o.topRight().y) < 2)){
-      if (bottomRight().x <= o.bottomRight().x && bottomRight().x >= o.bottomLeft().x){
-        groundY = o.topLeft().y - 1 - h; 
-        position.set(position.x, groundY);  
+    if (velocity.y > 0){
+      if ((bottomRight().y > o.topRight().y && bottomRight().y < o.bottomRight().y) &&
+          (bottomRight().x <= o.bottomRight().x && bottomRight().x >= o.bottomLeft().x)){
+          jumping = false; 
+          acceleration.set(acceleration.x, 0); 
+          velocity.set(velocity.x, 0); 
+          groundY = o.topLeft().y - h; 
+          position.set(position.x, groundY);  
       }
     }
     
     if (velocity.y < 0){
-      if (Math.abs(topRight().y - o.bottomRight().y) < w &&
+      if (topRight().y < o.bottomRight().y && topRight().y > o.topRight().y &&
           (topLeft().x >= o.bottomLeft().x && topRight().x <= o.bottomRight().x)){
+            jumping = false; 
             position.set(position.x, o.bottomLeft().y - 1); 
           }
+    }
+    
+    // fixing the bug where you can get stuck into the ground
+    if (topLeft().x >= o.topLeft().x && 
+        topRight().x <= o.topRight().x && 
+        topLeft().y >= o.topLeft().y && 
+        bottomLeft().y <= o.bottomLeft().y){
+          position.set(position.x, o.topLeft().y - h); 
     }
   }
   
   
   void move(){  
-    if (position.y > groundY && belowPixel() == GROUND){
-      jumping = false; 
-      acceleration.set(acceleration.x, 0); 
-      velocity.set(velocity.x, 0); 
-      position.set(position.x, groundY);
-    }
     
     if (belowPixel() == BACKGROUND && !jumping){
-      acceleration.add(0, 0.05); 
+      acceleration.add(0, 0.05);
+      groundY = position.y; 
     }
+    
     
     velocity.add(acceleration); 
     position.add(velocity); 
