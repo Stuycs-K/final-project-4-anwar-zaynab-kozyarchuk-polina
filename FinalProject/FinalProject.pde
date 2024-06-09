@@ -103,6 +103,7 @@ void draw(){
     
     m.moveChars(); 
     m.display(); 
+    m.adjustGems();
   }
 
 

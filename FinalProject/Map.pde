@@ -7,8 +7,9 @@ public class Map{
   int level; 
   ArrayList<Switch> switches;
   ArrayList<Platform> platforms;
- //ArrayList<Gem> gems; 
- //int collectedGems; 
+  ArrayList<Gem> gems; 
+  int collectedFGems;
+  int collectedWGems;
    
    public Map(){
      this(1); 
@@ -70,6 +71,9 @@ public class Map{
      
      switches = new ArrayList<Switch>();
      switches.add(new Lever(watergirl.position.x + 80, watergirl.position.y + 3, platforms.get(0)));
+     
+     gems = new ArrayList<Gem>();
+     gems.add(new Gem(watergirl.position.x+120, watergirl.position.y -2,"f"));
    }
    
    void toggleSwitches(String type){
@@ -82,6 +86,12 @@ public class Map{
      for (int i = 0; i < doors.size(); i++){
        doors.get(i).display();
      }
+   }
+   
+   void displayGems(){
+     for (int i = 0; i < gems.size(); i++){
+       gems.get(i).display();
+     }     
    }
    
    void displayChars(){
@@ -101,6 +111,7 @@ public class Map{
      displayDoors(); 
      displaySwitches(); 
      printTutorial(); 
+     displayGems();
    }
    
    void moveChars(){
@@ -119,6 +130,12 @@ public class Map{
        return true;
      } else {
        return false;
+     }
+   }
+   
+   void adjustGems(){
+     for (int i = 0; i < gems.size(); i++){
+       gems.get(i).disappear();
      }
    }
    
