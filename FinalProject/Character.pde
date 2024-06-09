@@ -103,18 +103,18 @@ class Character{
   }
   
   void die(){
-    if (inProximity(GOO,2)){
+    if (inProximity(GOO,1)){
       isDead = true;
       setPosition(-10,-10);
     }
     if (isFire()){
-      if (inProximity(WATER,2)){
+      if (inProximity(WATER,1)){
         isDead = true;
         setPosition(-10,-10);
       }
     }
     else {
-      if (inProximity(LAVA,2)){
+      if (inProximity(LAVA,1)){
         isDead = true;
         setPosition(-10,-10);
       }
@@ -244,8 +244,8 @@ class Character{
       if (direction.equals("right")){
         PVector bottomRight = bottomRight();
         boolean ableToMove = get((int) bottomRight.x, (int)bottomRight.y) != PLATFORM;
-        println("color:" + get((int) bottomRight.x, (int)bottomRight.y));
-        println("ableToMove: " + ableToMove);
+        //println("color:" + get((int) bottomRight.x, (int)bottomRight.y));
+        //println("ableToMove: " + ableToMove);
         if (ableToMove){
           if (velocity.mag() < 1.5){
             acceleration.add(0.05, 0 ); 

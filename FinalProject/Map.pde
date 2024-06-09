@@ -10,6 +10,8 @@ public class Map{
   ArrayList<Gem> gems; 
   int collectedFGems;
   int collectedWGems;
+  PImage fGem;
+  PImage wGem;
   int timer; 
    
    public Map(){
@@ -26,7 +28,9 @@ public class Map{
       if (level == 2){
         this.level = 2; 
       }
+     
    }
+  
    
    public void printTutorial(){
      PFont font; 
@@ -47,6 +51,12 @@ public class Map{
      for (Obstacle o: blocks){
        o.display(); 
      }
+     fGem = loadImage("firegem.png");
+     wGem = loadImage("watergem.png");
+     fGem.resize(40,40);
+     wGem.resize(40,40);   
+     image(fGem,700, 10);
+     image(wGem, 700, 60);
    }
    
    public void setupMap(){ 
@@ -64,6 +74,7 @@ public class Map{
      watergirl.setPosition(fireboy.w + 2, ycor-watergirl.h);
      displayChars();
      
+     
      if (level == 1){
        
        blocks.add(new Obstacle("ground", 0, height - 40, width, 40)); 
@@ -80,8 +91,8 @@ public class Map{
        
        switches.add(new Lever(watergirl.position.x + 60, watergirl.position.y + 3, platforms.get(0)));
        
-       gems.add(new Gem(watergirl.position.x + 120, watergirl.position.y-3, "f"));
-       gems.add(new Gem(watergirl.position.x + 650, watergirl.position.y-3, "w"));       
+       gems.add(new Gem(watergirl.position.x + 120, watergirl.position.y-5, "f"));
+       gems.add(new Gem(watergirl.position.x + 650, watergirl.position.y-5, "w"));       
        
      }
      
@@ -123,12 +134,24 @@ public class Map{
        
        p = new Platform(0, height - 250, 120, 20); 
        platforms.add(p); 
-       p.addState(p.position.x + 100, p.position.y); 
-       switches.add(new Lever(width - 400, height - 170, p)); 
+       p.addState(p.position.x + 1000, p.position.y); 
+       switches.add(new Lever(width - 400, height - 170, p));
+       
+       gems.add(new Gem(305, height-95, "f"));
+       gems.add(new Gem(505, height-95, "w"));
+       gems.add(new Gem(765, height-120, "w"));
+       gems.add(new Gem(765, height-280, "f"));
+       gems.add(new Gem(265, height-340, "f"));
+       gems.add(new Gem(510, height-340, "w"));
+
      }
     
-     
      showBackground(); 
+   }
+   
+   void displayCollected(){
+     text(collectedFGems, 745, 43);
+     text(collectedWGems, 745, 93);
    }
    
    void toggleSwitches(String type){
@@ -167,6 +190,7 @@ public class Map{
      displayGems();
      displaySwitches();
      displayTimer();
+     displayCollected();
      
      if (level == 1)
        printTutorial(); 
@@ -196,16 +220,20 @@ public class Map{
    boolean lostGame(){
      fireboy.die();
      watergirl.die();
+     
      if (fireboy.isDead || watergirl.isDead){
        background(color(0,0,0));
        textAlign(CENTER); 
        fill(255); 
        text("AHHAHAHHAHAH LOSER", width/2, height/3); 
-       text("press spacebar to restart", width/2, height*2/3); 
+       text("press spacebar to restart", width/2, height*2/3);
+       collectedFGems = 0;
+       collectedWGems = 0;       
        return true;
      } else {
        return false;
      }
+
    }
    
    void adjustGems(){
