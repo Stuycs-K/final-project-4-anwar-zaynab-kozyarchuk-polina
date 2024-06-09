@@ -1,7 +1,11 @@
-class Platform extends Obstacle{
+class Platform{
+
+  PVector position;
   int state;
   int stateMax;
   ArrayList<PVector> states;
+  int w;
+  int h;
   
   Platform(){
     this(0,0);
@@ -10,11 +14,13 @@ class Platform extends Obstacle{
     this(x,y,20,30);
   }
   Platform(float x, float y, int _w, int _h){
-    super("platform", x, y, _w, _h); 
+    position = new PVector(x,y,0);
     state = 0;
     stateMax = 0;
     states = new ArrayList<PVector>();
     states.add(position);
+    w = _w;
+    h = _h;
   }
   
   void addState(float x, float y){
@@ -24,8 +30,8 @@ class Platform extends Obstacle{
   }
   
   void adjustState(){
-    //println("adjusting state...");
-    //println("states.size() : " + states.size());
+    //ln("adjusting state...");
+    //ln("states.size() : " + states.size());
     if (state < stateMax){
       state++;
     }
@@ -33,7 +39,7 @@ class Platform extends Obstacle{
       state =0;
     }
     position = states.get(state);
-    //println("states.get(state) // states.get(" + state + ") : " + position);
+    //ln("states.get(state) // states.get(" + state + ") : " + position);
   }
   
   void display(){

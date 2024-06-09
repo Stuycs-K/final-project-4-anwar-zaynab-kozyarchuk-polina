@@ -11,17 +11,25 @@ final color WATER = color(173, 213, 247);
 final color uLEVER = color(159, 172, 194); //untoggled lever color
 final color tLEVER = color(247, 194, 17);  //toggled lever color
 final color PLATFORM = color(181, 155, 201);
+final color GROUND = color(163, 123, 47); 
+final color BACKGROUND = color(99, 82, 48); 
 boolean rightF;
 boolean rightW; 
 boolean leftF; 
 boolean leftW; 
 Map m;
-
+int currentLevel; 
+PImage wImg; 
+PImage fImg; 
 
 void setup(){
-  size(400, 400); 
-  m = new Map(); 
+  currentLevel = 1; 
+  size(800, 700); 
+  m = new Map(currentLevel); 
   m.setupMap(); 
+  wImg = loadImage("watergirl.jpg"); 
+  fImg = loadImage("fireboy.jpg"); 
+   
 }
 
 void keyPressed(){
@@ -51,6 +59,37 @@ void keyPressed(){
   if (key == '/'){
     m.toggleSwitches("f");
   }
+  
+  if (key == 'y'){
+    if (currentLevel == 2 || currentLevel == 3){
+      m.fireboy.setPosition(0, height - 430);
+      m.watergirl.setPosition(0, height - 430);
+    }
+    if (currentLevel == 1){
+      m.fireboy.setPosition(width - 80, m.fireboy.position.y); 
+      m.watergirl.setPosition(width - 90, m.watergirl.position.y); 
+    }
+  }
+  
+  if (m.lostGame() && key == ' '){
+    m.restart(); 
+  }
+  
+  if (m.wonGame() && key == ' '){
+    if (currentLevel <= 2){
+      currentLevel++; 
+      m = new Map(currentLevel); 
+      m.setupMap(); 
+    }
+    else{
+      m.restart(); 
+    }
+  }
+  
+  if (m.wonGame() && key == 'b'){
+    m.restart(); 
+
+  }
 }
 
 void keyReleased(){
@@ -65,7 +104,8 @@ void keyReleased(){
     leftW = false; 
 }
 
-void draw(){
+void draw(){ 
+  
   if (!m.wonGame() && !m.lostGame()){
     if(rightF && !leftF){
       m.fireboy.speedUp("right"); 
@@ -94,6 +134,9 @@ void draw(){
     
     m.moveChars(); 
     m.display(); 
+    m.adjustGems();
   }
+  
+   
 
 }
