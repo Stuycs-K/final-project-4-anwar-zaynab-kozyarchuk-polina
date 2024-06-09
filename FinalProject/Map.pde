@@ -250,9 +250,11 @@ public class Map{
        background(color(0,0,0));
        textAlign(CENTER); 
        fill(255); 
-       text("YOU WON!!!", (width/2), height - (height*3/4));  
+       text("YOU WON!!!", (width/2), height - (height*3/4)); 
+       String collectedGems = " collectedGems: " + (collectedFGems + collectedWGems)  +"/" + gems.size();
        String rank = "rank: " + calculateRank(); 
-       text(rank, width/2, height/2); 
+       text(collectedGems, width/2, height/3 +50);
+       text(rank, width/2, 2*height/3 -50); 
        if (level == 1){
          text("press spacebar to go to next level, b to repeat level", width - width/2, height - height/4); 
        }
