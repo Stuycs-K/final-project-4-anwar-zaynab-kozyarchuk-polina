@@ -136,42 +136,30 @@ class Character{
   }
   
   
-  void collide(Platform p){
-    if (velocity.x > 0){
-      if (Math.abs(bottomRight().x - p.bottomLeft().x) < 3 &&
-          (bottomRight().y <= p.bottomLeft().y && topRight().y >= p.topLeft().y)){
-        stop();
-        position.set(p.topLeft().x - w - 1, groundY);  
-      }
-    }
-    
-    if (velocity.x < 0){
-      if (PVector.dist(bottomLeft(), p.bottomRight()) < 2){
-        stop();
-        position.set(p.topRight().x + 1, groundY); 
-      }
-    }
-  }
   
   //kinda like the same as collide but for obstacles instead of platforms
   void interact(Obstacle o){
     if (velocity.x > 0){
-      if (PVector.dist(bottomRight(), o.bottomLeft()) < 2){
-        stop(); 
-        position.set(o.bottomLeft().x - w - 1, o.bottomLeft().y - h); 
+      if (Math.abs(bottomRight().x - o.bottomLeft().x) < 2 &&
+          (bottomRight().y <= o.bottomLeft().y && topRight().y >= o.topLeft().y)){
+        acceleration.set(0, acceleration.y); 
+        velocity.set(0, velocity.y); 
+        position.set(o.topLeft().x - w, position.y);  
       }
     }
     
     if (velocity.x < 0){
-      if (PVector.dist(bottomLeft(), o.bottomRight()) < 2){
-        stop();
-        position.set(o.bottomRight().x + 1, o.bottomRight().y - h); 
+      if (Math.abs(bottomLeft().x - o.bottomRight().x) < 2 && 
+          (bottomLeft().y <= o.bottomRight().y && topLeft().y >= o.topRight().y)){
+        acceleration.set(0, acceleration.y); 
+        velocity.set(0, velocity.y); 
+        position.set(o.bottomRight().x + 1, position.y); 
       }
     }
     
     if (velocity.y > 0){
       if ((bottomRight().y > o.topRight().y && bottomRight().y < o.bottomRight().y) &&
-          (bottomRight().x <= o.bottomRight().x && bottomRight().x >= o.bottomLeft().x)){
+          (bottomRight().x < o.bottomRight().x && bottomRight().x > o.bottomLeft().x)){
           jumping = false; 
           acceleration.set(acceleration.x, 0); 
           velocity.set(velocity.x, 0); 
@@ -194,6 +182,7 @@ class Character{
         topLeft().y >= o.topLeft().y && 
         bottomLeft().y <= o.bottomLeft().y){
           position.set(position.x, o.topLeft().y - h); 
+          
     }
   }
   

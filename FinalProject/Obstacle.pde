@@ -77,5 +77,6 @@ public class Obstacle{
     float y =  position.y; 
     fill(c);
     rect(x, y, w, h); 
+    
   }
 }
