@@ -23,7 +23,7 @@ PImage wImg;
 PImage fImg; 
 
 void setup(){
-  currentLevel = 3; 
+  currentLevel = 1; 
   size(800, 700); 
   m = new Map(currentLevel); 
   m.setupMap(); 
