@@ -61,7 +61,7 @@ void keyPressed(){
   }
   
   if (key == 'y'){
-    if (currentLevel == 2){
+    if (currentLevel == 2 || currentLevel == 3){
       m.fireboy.setPosition(0, height - 430);
       m.watergirl.setPosition(0, height - 430);
     }
@@ -76,7 +76,7 @@ void keyPressed(){
   }
   
   if (m.wonGame() && key == ' '){
-    if (currentLevel == 1){
+    if (currentLevel <= 2){
       currentLevel++; 
       m = new Map(currentLevel); 
       m.setupMap(); 

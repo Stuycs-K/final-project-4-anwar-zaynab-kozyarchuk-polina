@@ -21,14 +21,10 @@ public class Map{
    public Map(int level){
      collectedWGems = 0;
      collectedFGems = 0;
-      if (level == 1){
-       this.level = 1;
-      }
-       
-      if (level == 2){
-        this.level = 2; 
-      }
+
      
+ 
+      this.level = level; 
    }
   
    
@@ -127,9 +123,9 @@ public class Map{
        
        //platforms
        Platform p; 
-       p = new Platform(doors.get(1).position.x - 100, height - 480 - 70, 20, 70);
+       p = new Platform(doors.get(1).position.x - 100, height - 480 - 100, 20, 100);
        platforms.add(p); 
-       p.addState(p.position.x, p.position.y - 70); 
+       p.addState(p.position.x, p.position.y - 100); 
        switches.add(new Lever(width - 350, height - 400, p)); 
        
        p = new Platform(0, height - 250, 120, 20); 
@@ -144,6 +140,80 @@ public class Map{
        gems.add(new Gem(265, height-340, "f"));
        gems.add(new Gem(510, height-340, "w"));
 
+     }
+     
+     if (level == 3){
+       watergirl.setPosition(width - watergirl.w, watergirl.getY() + watergirl.h); 
+       
+       int currY = height - 20; 
+       blocks.add(new Obstacle("ground", 0, currY, width, 20)); 
+       blocks.add(new Obstacle("lava", 200, currY, 150, 10)); 
+       blocks.add(new Obstacle("water", 450, currY, 150, 10)); 
+       currY -= 50; 
+       blocks.add(new Obstacle("ground", 350, currY, 100, 50));
+       currY -= 60; 
+       blocks.add(new Obstacle("ground", 0, currY, 350, 20)); 
+       blocks.add(new Obstacle("water", 80, currY, 150, 10));
+       blocks.add(new Obstacle("ground", 450, currY, 350, 20));
+       blocks.add(new Obstacle("lava", 580, currY, 150, 10)); 
+       currY -= 40; 
+       blocks.add(new Obstacle("ground", 0, currY, 30, 40)); 
+       blocks.add(new Obstacle("ground", width - 30, currY, 30, 40)); 
+       currY -= 40; 
+       int doorY = currY;
+       blocks.add(new Obstacle("ground", 80, currY, width - 160, 20)); 
+       currY -= 40;  
+       blocks.add(new Obstacle("ground", 350, currY, 100, 40)); 
+       currY -= 20; 
+       blocks.add(new Obstacle("ground", 0, currY, 60, 20)); 
+       blocks.add(new Obstacle("ground", width - 60, currY, 60, 20)); 
+       currY -= 40; 
+       blocks.add(new Obstacle("ground", 200, currY, 100, 20)); 
+       blocks.add(new Obstacle("lava", 210, currY, 80, 10)); 
+       blocks.add(new Obstacle("ground", 500, currY, 100, 20)); 
+       blocks.add(new Obstacle("water", 510, currY, 80, 10)); 
+       blocks.add(new Obstacle("ground", 390, currY, 20, 60)); 
+       currY -= 100; 
+       blocks.add(new Obstacle("ground", 350, currY, 100, 100)); 
+       currY -= 80; 
+       blocks.add(new Obstacle("ground", 60, currY, 280, 20)); 
+       blocks.add(new Obstacle("ground", width - 340, currY, 280, 20)); 
+       currY += 20; 
+       blocks.add(new Obstacle("ground", 180, currY, 20, 260)); 
+       blocks.add(new Obstacle("ground", 600, currY, 20, 260)); 
+       currY += 100; 
+       blocks.add(new Obstacle("ground", 120, currY, 60, 20)); 
+       blocks.add(new Obstacle("ground", 620, currY, 60, 20)); 
+       
+       doorY -= 20; 
+       doors.add(new Door(250, doorY, "fire")); 
+       doors.add(new Door(540, doorY, "water")); 
+       
+       Platform p; 
+       p = new Platform(120, 360, 60, 20); 
+       p.addState(60, 380); 
+       platforms.add(p); 
+       switches.add(new Lever(10, 410, p)); 
+       
+       p = new Platform(80, 300, 100, 20); 
+       p.addState(0, 280); 
+       platforms.add(p); 
+       switches.add(new Lever(80, 360, p)); 
+       
+       p = new Platform(620, 360, 60, 20); 
+       p.addState(680, 380); 
+       platforms.add(p); 
+       switches.add(new Lever(width - 10, 410, p)); 
+       
+       p = new Platform(620, 300, 100, 20); 
+       p.addState(width - 100, 280); 
+       platforms.add(p); 
+       switches.add(new Lever(width - 80, 360, p)); 
+       
+       gems.add(new Gem(300, height-160, "f"));
+       gems.add(new Gem(500, height-160, "w"));
+       gems.add(new Gem(355, 420, "f"));
+       gems.add(new Gem(420, 420, "w"));
      }
     
      showBackground(); 
@@ -213,7 +283,6 @@ public class Map{
    void moveChars(){ 
      fireboy.move(); 
      watergirl.move(); 
-     platformCollisions(); 
      obstacleInteractions();
    }
    
@@ -254,8 +323,8 @@ public class Map{
        String collectedGems = " collectedGems: " + (collectedFGems + collectedWGems)  +"/" + gems.size();
        String rank = "rank: " + calculateRank(); 
        text(collectedGems, width/2, height/3 +50);
-       text(rank, width/2, 2*height/3 -50); 
-       if (level == 1){
+       text(rank, width/2, 2*height/3 -50);  
+       if (level <= 2){
          text("press spacebar to go to next level, b to repeat level", width - width/2, height - height/4); 
        }
        textAlign(LEFT); 
@@ -269,17 +338,15 @@ public class Map{
      setupMap(); 
    }
    
-   void platformCollisions(){
-     for (Platform p : platforms){
-       fireboy.collide(p);
-       watergirl.collide(p); 
-     }
-   }
    
    void obstacleInteractions(){
      for (Obstacle o : blocks){
        fireboy.interact(o); 
        watergirl.interact(o); 
+     }
+     for (Platform p : platforms){
+       fireboy.interact(p); 
+       watergirl.interact(p); 
      }
    }
    
