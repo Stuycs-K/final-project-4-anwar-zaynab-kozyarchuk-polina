@@ -56,3 +56,19 @@ since we were having issues with the platforms (the ones that are controlled by 
 ### 6/5/2024
 
 didn't have much time in class, but I made the window larger and fixed weirdly proportioned objects. 
+
+### 6/6/2024
+
+worked on interacting with obstacles (aka the ground and jumping up onto things). It works partially--the character is stopped when approaching an obstacle from left or right. Also set up the first actual level (level 2). 
+
+### 6/7/2024
+
+there were lots of issues with phasing through blocks, so I tried working to fix that. 
+
+### 6/8/2024 
+
+I made a system for displaying the player's "rank" at the end of the game. Also worked on fixing spacing for the map now that some bugginess was gone. 
+
+### 6/9/2024
+
+Added last touches. Made a third level, which was pretty simple and looks cool and different. Also did more bug fixing. 
