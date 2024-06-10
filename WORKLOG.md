@@ -8,8 +8,59 @@ wrote coordinates class
 
 ### 5/23/2024
 
-thought about how we're gonna do this. worked on character class and made hem able to display. gonna make them move.. soonn... also for some reason wg is like weirdly shorter than fireboy i shoudl figure that out
+thought about how we're gonna do this. worked on character class and made hem able to display. gonna make them move soonn. also for some reason watergirl is weirdly shorter than fireboy i shoudl figure that out
 
+### 5/24/2024
+
+worked on doors, displaying and figuring out where to place them.
+
+### 5/27/2024
+
+working more on doors, writing lose and win screen. they can die also
+
+### 5/28/2024
+
+made it so they win when both characters reach the doors
+
+### 5/29/2024
+
+starting to write constructors and general code for obstacles. spent a lot of time brainstorming on how they're gonna connect to the switches
+
+### 5/30/2024
+
+writing code for the switches, adjusting states of the platforms and such. got them to display
+
+### 5/31/2024
+
+finalized switches and platforms. because they literally didn't work
+
+### 6/3/2024
+
+making the platforms actually prevent the characters from moving. they may phase through them... sometimes.....
+
+### 6/4/2024
+
+trying to update the graphics. i can't get it to work for the life of me. gave up and updated the prototype
+
+### 6/5/2024
+
+trying to make buttons into a thing. incredibly buggy.
+
+### 6/6/2024
+
+when i try to get the buttons to work with two characters things start breaking. the whole game starts breaking. so i think i'm gonna give up on that
+
+### 6/7/2024
+
+working on gems! constructor, brainstorming logistics
+
+### 6/8/2024 
+
+trying to get the gem counter thing to make sense
+
+### 6/9/2024
+
+collecting gems, graphics of gems, etc
 
 ## Zaynab Anwar
 
@@ -56,3 +107,19 @@ since we were having issues with the platforms (the ones that are controlled by 
 ### 6/5/2024
 
 didn't have much time in class, but I made the window larger and fixed weirdly proportioned objects. 
+
+### 6/6/2024
+
+worked on interacting with obstacles (aka the ground and jumping up onto things). It works partially--the character is stopped when approaching an obstacle from left or right. Also set up the first actual level (level 2). 
+
+### 6/7/2024
+
+there were lots of issues with phasing through blocks, so I tried working to fix that. 
+
+### 6/8/2024 
+
+I made a system for displaying the player's "rank" at the end of the game. Also worked on fixing spacing for the map now that some bugginess was gone. 
+
+### 6/9/2024
+
+Added last touches. Made a third level, which was pretty simple and looks cool and different. Also did more bug fixing. 
