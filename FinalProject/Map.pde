@@ -47,10 +47,7 @@ public class Map{
      for (Obstacle o: blocks){
        o.display(); 
      }
-     fGem = loadImage("firegem.png");
-     wGem = loadImage("watergem.png");
-     fGem.resize(40,40);
-     wGem.resize(40,40);   
+
      image(fGem,700, 10);
      image(wGem, 700, 60);
    }
@@ -70,7 +67,10 @@ public class Map{
      watergirl.setPosition(fireboy.w + 2, ycor-watergirl.h);
      displayChars();
      
-     
+     fGem = loadImage("firegem.png");
+     wGem = loadImage("watergem.png");
+     fGem.resize(40,40);
+     wGem.resize(40,40);   
      if (level == 1){
        
        blocks.add(new Obstacle("ground", 0, height - 40, width, 40)); 
@@ -82,7 +82,7 @@ public class Map{
        doors.add(new Door(width-10-fireboy.w-8, ycor-fireboy.h, "w"));
        displayDoors();
        
-       platforms.add(new Platform(doors.get(1).position.x - 60, doors.get(1).position.y-60, 10, 80));
+       platforms.add(new Platform(doors.get(1).position.x - 60, doors.get(1).position.y-100, 10, 120));
        platforms.get(0).addState(platforms.get(0).position.x, platforms.get(0).position.y-30);
        
        switches.add(new Lever(watergirl.position.x + 60, watergirl.position.y + 3, platforms.get(0)));
